@@ -272,6 +272,12 @@ nav button.active {
   padding-top: 22px;
 }
 
+.method-summary .method-button {
+  min-width: 250px;
+  text-align: center;
+  white-space: nowrap;
+}
+
 .method-detail,
 .product-detail {
   display: none;
@@ -437,17 +443,15 @@ nav button.active {
 .resource-list {
   display: grid;
   gap: 22px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 16px 0 0;
-}
-
-.resource-list ul {
-  margin: 0;
-  padding-left: 20px;
+  padding-left: 0;
 }
 
 .resource-list li {
+  list-style: none;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .resource-label {
@@ -1073,6 +1077,12 @@ footer strong {
 
   .product-choice-header {
     grid-template-columns: 1fr;
+  }
+
+  .method-summary .method-button {
+    min-width: 0;
+    white-space: normal;
+    width: 100%;
   }
 
   .spec-row {

@@ -52,7 +52,7 @@ function getProductOptionsMarkup(quoteRequest) {
 
 function getProductRowMarkup(quoteRequest, isAdditional = false) {
   const label = productLabelsByRequestType[quoteRequest];
-  const amountLabel = quoteRequest === "Rental" ? "Weeks" : "Quantity";
+  const amountLabel = quoteRequest === "Rental" ? "Week" : "Quantity";
   const minAmount = "1";
   const productName = isAdditional ? `Additional ${label}` : label;
   const quantityName = isAdditional ? `Additional ${label} ${amountLabel}` : `${label} ${amountLabel}`;
@@ -90,7 +90,7 @@ function renderProductSections() {
 
   productList.innerHTML = quoteRequests.map(quoteRequest => {
     const label = productLabelsByRequestType[quoteRequest];
-    const amountLabel = quoteRequest === "Rental" ? "Weeks" : "Quantity";
+    const amountLabel = quoteRequest === "Rental" ? "Week" : "Quantity";
 
     return `
       <div class="product-choice-section" data-quote-request="${quoteRequest}">
