@@ -1,0 +1,2857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIG Industries | Emission Monitoring Equipment</title>
+
+<style>
+* { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #172033;
+  background: #f4f7fb;
+}
+
+header {
+  color: white;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+
+.logo:focus-visible {
+  outline: 2px solid #ffb347;
+  outline-offset: 6px;
+}
+
+nav button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-menu {
+  background: #071827;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 8px;
+  box-shadow: 0 16px 35px rgba(0,0,0,.28);
+  display: none;
+  left: 18px;
+  min-width: 290px;
+  padding: 8px;
+  position: absolute;
+  top: calc(100% + 2px);
+  z-index: 20;
+}
+
+.dropdown-menu::before {
+  content: "";
+  height: 8px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -8px;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.nav-dropdown.menu-closed .dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu button {
+  color: white;
+  display: block;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: left;
+  width: 100%;
+}
+
+.dropdown-menu button:hover,
+.dropdown-menu button:focus-visible {
+  background: rgba(255,255,255,.08);
+  color: #ffb347;
+}
+
+nav button:hover,
+nav button.active {
+  color: #ffb347;
+}
+
+.page {
+  display: none;
+  padding: 70px 6%;
+}
+
+.page.active {
+  display: block;
+}
+
+.home-details {
+  display: none;
+  padding: 70px 6%;
+}
+
+.home-details.active {
+  display: block;
+}
+
+.hero-header {
+  background:
+    linear-gradient(90deg, rgba(7,24,39,.95), rgba(7,24,39,.65)),
+    url("header.png");
+  background-size: cover;
+  background-position: center top;
+}
+
+.hero-header.solid-header {
+  background: #071827;
+}
+
+.hero {
+  min-height: 620px;
+  color: white;
+  display: grid;
+  grid-template-columns: minmax(0, 720px);
+  align-items: center;
+  padding: 80px 6%;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.hero span {
+  color: #ffb347;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 620px;
+  color: #dbe7f3;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 24px;
+  background: #ffb347;
+  color: #071827;
+  text-decoration: none;
+  font-weight: 800;
+  border-radius: 6px;
+  margin-top: 22px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-title h2 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  color: #667085;
+  max-width: 780px;
+  margin: auto;
+}
+
+.section-title p + p {
+  margin-top: 16px;
+}
+
+#about .section-title {
+  margin-bottom: 28px;
+}
+
+#about {
+  padding-top: 5px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 14px 35px rgba(20,40,70,.08);
+  border: 1px solid #dfe7ef;
+}
+
+.card h3 {
+  color: #0b4f8a;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: #0b4f8a;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  margin-bottom: 18px;
+}
+
+.method-summary,
+.method-detail,
+.product-detail {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.method-summary .card {
+  text-align: center;
+}
+
+.method-summary .card ul {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.method-summary .cards .card:nth-child(3) .icon {
+  display: none;
+}
+
+.method-summary .cards .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.method-summary .method-actions {
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.method-detail,
+.product-detail {
+  display: none;
+}
+
+.method-detail.active,
+.product-detail.active {
+  display: block;
+}
+
+.method-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.method-link {
+  color: #0b4f8a;
+  text-decoration: none;
+}
+
+.method-link:hover,
+.method-link:focus-visible {
+  color: #ff8f00;
+  text-decoration: underline;
+}
+
+.method-button,
+.back-button {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.method-button {
+  background: #0b4f8a;
+  color: white;
+  padding: 12px 18px;
+}
+
+.product-name-link {
+  color: #0b4f8a;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.product-name-link:hover,
+.product-name-link:focus-visible {
+  color: #ff8f00;
+  text-decoration: underline;
+}
+
+.back-button {
+  appearance: none;
+  background: transparent;
+  color: #0b4f8a;
+  border: none;
+  display: inline-flex;
+  font: inherit;
+  padding: 0;
+  margin-bottom: 24px;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.back-button:hover,
+.back-button:focus-visible {
+  color: #ff8f00;
+}
+
+.method-detail > .back-button {
+  background: white;
+  border: 1px solid #0b4f8a;
+  border-radius: 6px;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.method-paper {
+  background: white;
+  border: 1px solid #dfe7ef;
+  border-radius: 18px;
+  box-shadow: 0 14px 35px rgba(20,40,70,.08);
+  padding: 34px;
+}
+
+.product-detail {
+  position: relative;
+}
+
+.product-detail > .back-button {
+  left: 34px;
+  margin-bottom: 0;
+  position: absolute;
+  top: 34px;
+  z-index: 1;
+}
+
+.product-detail > .method-paper {
+  padding-top: 72px;
+}
+
+.method-paper h3 {
+  color: #0b4f8a;
+  font-size: 1.85rem;
+  margin: 0 0 10px;
+}
+
+.method-paper h4 {
+  color: #172033;
+  font-size: 1.2rem;
+  margin: 28px 0 10px;
+}
+
+.method-paper p {
+  line-height: 1.65;
+}
+
+.method-paper li {
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.product-detail-img {
+  align-self: center;
+  background: #f4f7fb;
+  border: 1px solid #dfe7ef;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.product-detail-img img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.product-detail-spec {
+  color: #667085;
+  font-weight: 800;
+  margin-top: -6px;
+}
+
+.product-data-actions {
+  margin-top: 18px;
+}
+
+.resource-list {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0 0;
+}
+
+.resource-list ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.resource-list li {
+  margin-bottom: 12px;
+}
+
+.resource-label {
+  color: #172033;
+  display: block;
+  font-size: .95rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.resource-link {
+  color: #0b4f8a;
+  display: inline-block;
+  font-size: .86rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.resource-link:hover,
+.resource-link:focus-visible {
+  color: #ff8f00;
+  text-decoration: underline;
+}
+
+.collapsible-section {
+  margin-top: 28px;
+}
+
+.collapsible-section summary {
+  align-items: center;
+  color: #0b4f8a;
+  cursor: pointer;
+  display: flex;
+  font-weight: 800;
+  gap: 10px;
+  justify-content: flex-start;
+  list-style: none;
+}
+
+.collapsible-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapsible-section summary::before {
+  content: "+";
+  color: #172033;
+  font-size: 1.35rem;
+  line-height: 1;
+  min-width: 18px;
+}
+
+.collapsible-section[open] summary::before {
+  content: "-";
+}
+
+.spec-list {
+  border: 1px solid #dfe7ef;
+  border-radius: 12px;
+  margin: 16px 0 0;
+  overflow: hidden;
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: minmax(180px, .42fr) minmax(0, 1fr);
+}
+
+.spec-row + .spec-row {
+  border-top: 1px solid #dfe7ef;
+}
+
+.spec-row dt,
+.spec-row dd {
+  margin: 0;
+  padding: 13px 16px;
+  line-height: 1.45;
+}
+
+.spec-row dt {
+  background: #f4f7fb;
+  color: #172033;
+  font-weight: 800;
+}
+
+.spec-row dt small {
+  color: #5c6f82;
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.spec-row dd {
+  color: #4f5f70;
+}
+
+.spec-row dd p {
+  margin: 0;
+}
+
+.spec-row dd p + p {
+  margin-top: 8px;
+}
+
+.method-visual {
+  background: #f4f7fb;
+  border: 1px solid #dfe7ef;
+  border-radius: 14px;
+  margin: 26px 0;
+  padding: 22px;
+}
+
+.method-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.flow-step {
+  background: white;
+  border: 1px solid #dfe7ef;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.flow-step strong {
+  color: #0b4f8a;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.chromatogram {
+  height: 170px;
+  position: relative;
+  background:
+    linear-gradient(to top, #ccd6e0 1px, transparent 1px),
+    linear-gradient(to right, #ccd6e0 1px, transparent 1px);
+  background-size: 100% 34px, 64px 100%;
+  border-left: 2px solid #657789;
+  border-bottom: 2px solid #657789;
+}
+
+.peak {
+  position: absolute;
+  bottom: 0;
+  width: 34px;
+  background: #0b4f8a;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.peak:nth-child(1) {
+  height: 74px;
+  left: 20%;
+}
+
+.peak:nth-child(2) {
+  height: 118px;
+  left: 43%;
+}
+
+.peak:nth-child(3) {
+  height: 92px;
+  left: 68%;
+}
+
+.method-note {
+  background: #fff7eb;
+  border-left: 4px solid #ffb347;
+  margin-top: 22px;
+  padding: 16px 18px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+  align-items: stretch;
+}
+
+.product {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(20,40,70,.08);
+  border: 1px solid #dfe7ef;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-img {
+  aspect-ratio: 4 / 3;
+  max-height: 260px;
+  min-height: 190px;
+  background: linear-gradient(145deg, #dfe7ef, #ffffff);
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  border-bottom: 1px solid #dfe7ef;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.product-content {
+  padding: 26px 24px 28px;
+  flex: 1;
+}
+
+.product-category {
+  color: #0b4f8a;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.product-content h3 {
+  margin-top: 0;
+}
+
+.product-specs {
+  color: #667085;
+  font-size: .95rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.product-section {
+  margin-top: 42px;
+}
+
+.product-section:first-of-type {
+  margin-top: 0;
+}
+
+.product-section > h3 {
+  color: #0b4f8a;
+  font-size: 1.7rem;
+  margin: 0 0 18px;
+}
+
+#service {
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f2fbff 58%, #ffffff 100%);
+}
+
+#service .section-title {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-panel {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 8px 0 0;
+}
+
+.service-panel .cards {
+  justify-content: center;
+}
+
+.service-panel .card {
+  background: #ffffff;
+  border-color: #cfeaf7;
+  border-top: 5px solid #2a8fbd;
+  box-shadow: 0 16px 38px rgba(42,143,189,.12);
+}
+
+.service-panel .card h3 {
+  color: #08739f;
+}
+
+.about-list {
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 14px 35px rgba(20,40,70,.08);
+  border: 1px solid #dfe7ef;
+  padding: 30px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.about-list p {
+  margin: 0 0 18px;
+}
+
+.about-list ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.about-list li {
+  margin-bottom: 12px;
+}
+
+.client-list {
+  margin-top: 28px;
+}
+
+.client-list ul {
+  columns: 3;
+  column-gap: 34px;
+}
+
+.about-list li:last-child,
+.about-list p:last-child {
+  margin-bottom: 0;
+}
+
+.about-contact-note {
+  border-top: 1px solid #dfe7ef;
+  font-weight: 700;
+  margin-top: 22px;
+  padding-top: 18px;
+}
+
+#rentals .about-list {
+  margin-top: 28px;
+}
+
+form {
+  background: white;
+  max-width: 900px;
+  margin: auto;
+  padding: 34px;
+  border-radius: 20px;
+  box-shadow: 0 18px 45px rgba(20,40,70,.12);
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 700;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccd6e0;
+}
+
+.conditional-field {
+  display: none;
+}
+
+.conditional-field.active {
+  display: block;
+}
+
+.quote-request-options {
+  border: 1px solid #ccd6e0;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 8px 0 16px;
+  padding: 13px;
+}
+
+.quote-request-options label {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.quote-request-options input {
+  margin-top: 0;
+  width: auto;
+}
+
+.product-row {
+  align-items: end;
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 16px;
+}
+
+.product-row label {
+  margin-bottom: 0;
+}
+
+.remove-item-btn {
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: #b42318;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  height: 34px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 34px;
+}
+
+.remove-item-btn:hover,
+.remove-item-btn:focus-visible {
+  color: #7a271a;
+}
+
+.amount-label {
+  position: relative;
+}
+
+.amount-label .field-label {
+  display: block;
+  font-weight: 700;
+}
+
+.amount-label.has-remove input {
+  padding-right: 44px;
+}
+
+.product-choice-section {
+  border-top: 1px solid #dfe7ef;
+  margin-top: 18px;
+  padding-top: 18px;
+}
+
+.product-choice-header {
+  align-items: end;
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.product-choice-header h3,
+.product-choice-header span {
+  color: #172033;
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 14px;
+}
+
+.product-choice-header h3 {
+  margin-bottom: 0;
+}
+
+.product-choice-header span {
+  margin-bottom: 0;
+}
+
+.add-btn {
+  width: 100%;
+  padding: 12px;
+  border: 1px dashed #0b4f8a;
+  background: white;
+  color: #0b4f8a;
+  font-weight: 800;
+  margin: 10px 0 20px;
+  cursor: pointer;
+}
+
+.submit {
+  width: 100%;
+  background: #0b4f8a;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+footer {
+  background: #050f18;
+  color: #cbd5e1;
+  padding: 30px 6%;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+footer p {
+  margin: 4px 0;
+}
+
+footer strong {
+  color: white;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  header {
+    align-items: flex-start;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+
+  nav button {
+    margin-left: 0;
+  }
+
+  .dropdown-menu {
+    left: 0;
+  }
+
+  .hero h1 {
+    font-size: 2.7rem;
+  }
+
+  .hero,
+  .product-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  header,
+  .page,
+  .home-details,
+  .hero,
+  #service {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  header {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .logo img {
+    height: 58px;
+  }
+
+  .page,
+  .home-details,
+  #service {
+    padding-top: 46px;
+    padding-bottom: 46px;
+  }
+
+  .hero {
+    min-height: 520px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .section-title {
+    margin-bottom: 30px;
+  }
+
+  .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .product-section {
+    margin-top: 34px;
+  }
+
+  .product-section > h3 {
+    font-size: 1.35rem;
+  }
+
+  .product-grid,
+  .cards,
+  .product-detail-grid,
+  .method-flow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .product-img {
+    min-height: 170px;
+    padding: 18px;
+  }
+
+  .resource-list {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-request-options {
+    grid-template-columns: 1fr;
+  }
+
+  .client-list ul {
+    columns: 1;
+  }
+
+  .product-row {
+    grid-template-columns: 1fr;
+  }
+
+  .product-choice-header {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-row {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-row dd {
+    padding-top: 0;
+  }
+
+  .product-content,
+  .card,
+  .about-list,
+  .method-paper,
+  form {
+    padding: 22px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    text-align: left;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero-header" id="heroHeader">
+  <header>
+    <button class="logo" type="button" onclick="showPageById('home')" aria-label="Go to home page">
+      <img src="logo.png" alt="VIG Industries">
+    </button>
+    <nav>
+      <button class="active" data-page="home" onclick="showPage('home')">Home</button>
+      <button data-page="methods" onclick="showPage('methods')">Methods</button>
+      <div class="nav-dropdown">
+        <button data-page="products" onclick="closeProductDropdown(); showPage('products')">Products</button>
+        <div class="dropdown-menu">
+          <button type="button" onclick="navigateProductSection('fidAnalyzers')">Flame Ionization Detector (FID) Analyzer</button>
+          <button type="button" onclick="navigateProductSection('cemsProducts')">Continuous Emission Monitoring System (CEMS)</button>
+          <button type="button" onclick="navigateProductSection('componentsParts')">Components/Parts</button>
+          <button type="button" onclick="navigateProductSection('peripherals')">Peripherals</button>
+        </div>
+      </div>
+      <button data-page="service" onclick="showPage('service')">Service</button>
+      <button data-page="rentals" onclick="showPage('rentals')">Rentals</button>
+      <button data-page="about" onclick="showPage('about')">About</button>
+      <button data-page="contact" onclick="showPage('contact')">Contact</button>
+    </nav>
+  </header>
+
+  <section id="home" class="page active" style="padding:0;">
+  <div class="hero">
+    <div>
+      <h1>Emission Monitoring Systems That <span>Perform</span> and Last.</h1>
+      <p>
+        VIG Industries manufactures Method 25A and Method 18 emission monitoring equipment
+        for total hydrocarbons, methane, ethane, and VOC measurement applications.
+      </p>
+      <p>
+        We build systems to customer specifications and support customers with service,
+        troubleshooting, maintenance, rentals, and long-term equipment reliability.
+      </p>
+      <a class="btn" href="#" onclick="showPageById('contact')">Request a Quote</a>
+    </div>
+  </div>
+  </section>
+</div>
+
+  <div id="homeDetails" class="home-details active">
+    <div class="section-title">
+      <h2>Built Like Equipment. Supported Like a Partnership.</h2>
+      <p>
+        VIG is not only an equipment manufacturer. We help customers select, customize,
+        operate, and maintain emission monitoring systems.
+      </p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">⚙</div>
+        <h3>Custom Built</h3>
+        <p>Systems configured around the customer’s method, gas measurement, sample conditions, and site requirements.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔧</div>
+        <h3>Service Friendly</h3>
+        <p>Support for maintenance, repair, troubleshooting, calibration needs, and long-term system operation.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📈</div>
+        <h3>Compliance Focused</h3>
+        <p>Equipment for Method 25A and Method 18 applications where accurate measurement and uptime matter.</p>
+      </div>
+    </div>
+  </div>
+
+<section id="methods" class="page">
+  <div id="methodsSummary" class="method-summary">
+  <div class="section-title">
+    <h2>Method 25A and Method 18</h2>
+      <p>
+        Both methods evaluate gaseous organic emissions, but they answer different questions.
+        <a class="method-link" href="#method25aDetail" onclick="showMethodDetail('method25aDetail'); return false;">Method 25A</a>
+        measures total organic concentration as one combined response.
+        <a class="method-link" href="#method18Detail" onclick="showMethodDetail('method18Detail'); return false;">Method 18</a>
+        separates and identifies individual organic compounds by gas chromatography.
+      </p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+        <h3><a class="method-link" href="#method25aDetail" onclick="showMethodDetail('method25aDetail'); return false;">Method 25A</a></h3>
+      <p>
+        A total hydrocarbon method that uses a flame ionization detector (FID) to continuously
+        measure total gaseous organic concentration from a source sample.
+      </p>
+      <ul>
+        <li>Best for total organic concentration trends</li>
+        <li>Commonly reported as propane equivalents or carbon equivalents</li>
+        <li>Uses heated sample transport to reduce condensation risk</li>
+      </ul>
+      <div class="method-actions">
+        <button class="method-button" type="button" onclick="showMethodDetail('method25aDetail')">Learn more about Method 25A</button>
+      </div>
+    </div>
+
+    <div class="card">
+        <h3><a class="method-link" href="#method18Detail" onclick="showMethodDetail('method18Detail'); return false;">Method 18</a></h3>
+      <p>
+        A compound-specific method that uses gas chromatography to separate, identify, and
+        quantify gaseous organic compounds in emissions.
+      </p>
+      <ul>
+        <li>Best for speciated VOC analysis</li>
+        <li>Uses retention time and calibration standards for identification</li>
+        <li>Can use FID, PID, ECD, or other appropriate detectors</li>
+      </ul>
+      <div class="method-actions">
+        <button class="method-button" type="button" onclick="showMethodDetail('method18Detail')">Learn more about Method 18</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="icon">✓</div>
+      <h3>Choosing a Method</h3>
+      <p>
+        Choose Method 25A when the key question is the total hydrocarbon involved in a sample stream.
+      </p>
+      <p>
+        Choose Method 18 when the composition matters and individual compounds must be separated,
+        identified, and quantified.
+      </p>
+      <p>
+        If the correct method is not clear, VIG can help review the monitoring objective, target
+        compounds, sample conditions, and reporting needs to recommend a practical equipment and
+        service path.
+      </p>
+      <div class="method-actions">
+        <button class="method-button" type="button" onclick="showPageById('contact')">Contact VIG for Method Support</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="method25aDetail" class="method-detail">
+    <button class="back-button" type="button" onclick="showMethodsSummary()">Back to Methods</button>
+    <article class="method-paper">
+      <h3>Method 25A: Total Gaseous Organic Concentration by Flame Ionization</h3>
+      <p>
+        EPA Method 25A is a reference test method for determining total gaseous organic
+        concentration using a flame ionization detector. It is useful when the measurement
+        question is not which individual compounds are present, but what total organic
+        concentration exists in the gas stream.
+      </p>
+
+      <div class="method-visual" aria-label="Method 25A process diagram">
+        <div class="method-flow">
+          <div class="flow-step"><strong>Source Gas</strong>Sample is extracted from the stack or process stream.</div>
+          <div class="flow-step"><strong>Heated Transport</strong>Probe, filter, and heated sample line help prevent condensation.</div>
+          <div class="flow-step"><strong>FID Analyzer</strong>Organic compounds are ionized in a hydrogen flame.</div>
+          <div class="flow-step"><strong>Total Response</strong>Results are reported as calibration-gas or carbon equivalents.</div>
+        </div>
+      </div>
+
+      <h4>What the Method Measures</h4>
+      <p>
+        Method 25A measures total organic compounds as a bulk response. The method applies to
+        vapors consisting primarily of alkanes, alkenes, and aromatic hydrocarbons. Because the
+        FID responds to organic carbon, the final result is normally expressed as the equivalent
+        concentration of a calibration gas such as propane, or as carbon equivalents.
+      </p>
+
+      <h4>How Flame Ionization Works</h4>
+      <p>
+        A flame ionization detector burns the sample in a hydrogen-air flame. Organic compounds
+        entering the flame form ions, and the analyzer converts the resulting ion current into a
+        concentration signal. The stronger the organic carbon response, the higher the indicated
+        total hydrocarbon concentration.
+      </p>
+
+      <h4>Sampling System Requirements</h4>
+      <p>
+        The method depends on transporting the gas sample to the analyzer without losing organic
+        material along the way. A typical Method 25A system includes a sample probe, heated sample
+        line, particulate filter, calibration gas routing, fuel gas, combustion air, and a flame
+        ionization detector-based analyzer capable of meeting method performance requirements.
+      </p>
+
+      <h4>Calibration and Data Quality</h4>
+      <ul>
+        <li>Zero and calibration gases establish the analyzer response before measurement.</li>
+        <li>Calibration error checks verify that analyzer response agrees with known standards.</li>
+        <li>Drift checks evaluate whether the measurement system remains stable over the test period.</li>
+        <li>Results are interpreted as total organic concentration, not as a list of individual compounds.</li>
+      </ul>
+
+      <div class="method-note">
+        <strong>Practical takeaway:</strong> Method 25A is the right starting point when a facility
+        needs a continuous, total-organic measurement and does not need compound-by-compound
+        speciation.
+      </div>
+    </article>
+  </div>
+
+  <div id="method18Detail" class="method-detail">
+    <button class="back-button" type="button" onclick="showMethodsSummary()">Back to Methods</button>
+    <article class="method-paper">
+      <h3>Method 18: Gaseous Organic Compounds by Gas Chromatography</h3>
+      <p>
+        EPA Method 18 is used to measure gaseous organic compound emissions by gas chromatography.
+        Where Method 25A treats the sample as a total organic signal, Method 18 separates the gas
+        mixture into individual compounds so each target compound can be identified and quantified.
+      </p>
+
+      <div class="method-visual" aria-label="Method 18 chromatogram illustration">
+        <div class="chromatogram">
+          <div class="peak"></div>
+          <div class="peak"></div>
+          <div class="peak"></div>
+        </div>
+      </div>
+
+      <h4>What the Method Measures</h4>
+      <p>
+        Method 18 is designed for gaseous organics emitted from industrial sources. It is commonly
+        used when the identity of individual volatile organic compounds matters, such as methane,
+        ethane, or other target VOCs. Instead of reporting one total concentration, Method 18 can
+        report concentrations for specific compounds after chromatographic separation.
+      </p>
+
+      <h4>How Gas Chromatography Works</h4>
+      <p>
+        In gas chromatography (GC), a sample is vaporized and introduced into a carrier gas, which transports
+        it through a column containing a stationary phase. Different compounds interact differently with 
+        the stationary phase, causing them to travel at different rates and resulting in separation. The 
+        time between sample injection and detection of a compound is called its retention time. By comparing 
+        retention times to those of known standards under identical conditions, an analyst can tentatively 
+        identify the separated compounds.
+      </p>
+
+      <h4>Quantification and Detector Choice</h4>
+      <p>
+        After separation, each compound is detected and quantified. Method 18 allows appropriate
+        detector principles, including flame ionization, photoionization, electron capture, or other
+        detectors suited to the compounds of interest. Calibration standards are prepared or purchased
+        for target compounds, and the GC is calibrated under conditions matching sample analysis.
+      </p>
+
+      <h4>Planning a Method 18 Test</h4>
+      <ul>
+        <li>The analyst should know or presurvey the likely organic compounds before final analysis.</li>
+        <li>Calibration standards must match the compounds and concentration ranges of interest.</li>
+        <li>Column and detector selection must provide enough separation to avoid resolution interference.</li>
+        <li>Moisture, particulate matter, and high concentrations must be managed to protect data quality.</li>
+      </ul>
+
+      <div class="method-note">
+        <strong>Practical takeaway:</strong> Method 18 is the better choice when the question is
+        compound-specific, especially when methane, ethane, non-methane organics, or other VOCs
+        must be reported separately.
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="products" class="page">
+  <div id="productsSummary">
+  <div id="fidAnalyzers" class="section-title">
+    <h2>FID Hydrocarbon Analyzers</h2>
+    <p>Flame ionization detector analyzers for total hydrocarbon and volatile organic compound measurement applications.</p>
+  </div>
+
+  <div class="product-section">
+    <h3>Total Hydrocarbon Analyzers (THC)</h3>
+    <div class="product-grid">
+      <div class="product">
+        <div class="product-img">
+          <img src="model_10.png" alt="Model 10 FID total hydrocarbon analyzer" loading="lazy">
+        </div>
+        <div class="product-content">
+          <p class="product-category">THC Analyzer</p>
+          <h3><a class="product-name-link" href="#model10Detail" onclick="showProductDetail('model10Detail'); return false;">Model 10</a></h3>
+          <div class="product-specs">Single channel | Spot heated | THC</div>
+          <p>Microprocessor-based FID analyzer for continuous dry sample measurement at ambient temperature. The detector is spot heated to help prevent condensation and support repeatable performance.</p>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img">
+          <img src="model_10_2.png" alt="Model 10/2 FID dual channel total hydrocarbon analyzer" loading="lazy">
+        </div>
+        <div class="product-content">
+          <p class="product-category">THC Analyzer</p>
+          <h3><a class="product-name-link" href="#model102Detail" onclick="showProductDetail('model102Detail'); return false;">Model 10/2</a></h3>
+          <div class="product-specs">Dual channel | Spot heated | THC</div>
+          <p>Dual-channel version of the spot-heated FID analyzer, using two detectors for continuous measurement of two independent dry sample streams.</p>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img">
+          <img src="model_20.png" alt="Model 20 FID oven heated total hydrocarbon analyzer" loading="lazy">
+        </div>
+        <div class="product-content">
+          <p class="product-category">THC Analyzer</p>
+          <h3><a class="product-name-link" href="#model20Detail" onclick="showProductDetail('model20Detail'); return false;">Model 20</a></h3>
+          <div class="product-specs">Single channel | Oven heated | THC</div>
+          <p>Oven-heated FID analyzer designed to continuously measure one point. Sample-contact components are kept in a temperature-controlled oven to help prevent condensation.</p>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img">
+          <img src="model_20_2.png" alt="Model 20/2 FID dual channel oven heated total hydrocarbon analyzer" loading="lazy">
+        </div>
+        <div class="product-content">
+          <p class="product-category">THC Analyzer</p>
+          <h3><a class="product-name-link" href="#model202Detail" onclick="showProductDetail('model202Detail'); return false;">Model 20/2</a></h3>
+          <div class="product-specs">Dual channel | Oven heated | THC</div>
+          <p>Dual-point oven-heated FID analyzer with two detectors, sample filters, sample lines, valves, pump heads, and capillaries maintained in a heated oven.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-section">
+    <h3>Volatile Organic Compound (VOC) Analyzers</h3>
+    <div class="product-grid">
+      <div class="product">
+        <div class="product-img">
+          <img src="model_200.png" alt="Model 200 FID methane non-methane total hydrocarbon analyzer" loading="lazy">
+        </div>
+        <div class="product-content">
+          <p class="product-category">VOC Analyzer</p>
+          <h3><a class="product-name-link" href="#model200Detail" onclick="showProductDetail('model200Detail'); return false;">Model 200</a></h3>
+          <div class="product-specs">Dual channel | Oven heated | Methane / Non-methane / Total</div>
+          <p>FID NMHC analyzer using one detector for real-time total hydrocarbons and a second detector with a GC column to separate methane and non-methane components.</p>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img">
+          <img src="model_200_1.png" alt="Model 200/1 FID methane non-methane hydrocarbon analyzer" loading="lazy">
+        </div>
+        <div class="product-content">
+          <p class="product-category">VOC Analyzer</p>
+          <h3><a class="product-name-link" href="#model2001Detail" onclick="showProductDetail('model2001Detail'); return false;">Model 200/1</a></h3>
+          <div class="product-specs">Single FID | Oven heated | Methane / Non-methane</div>
+          <p>Methane/non-methane hydrocarbon analyzer that measures at preset intervals, using a GC column and one FID to separate and read methane and non-methane components.</p>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img">
+          <img src="model_200t.png" alt="Model 200T FID methane non-methane total hydrocarbon analyzer" loading="lazy">
+        </div>
+        <div class="product-content">
+          <p class="product-category">VOC Analyzer</p>
+          <h3><a class="product-name-link" href="#model200tDetail" onclick="showProductDetail('model200tDetail'); return false;">Model 200T</a></h3>
+          <div class="product-specs">Oven heated | Methane / Non-methane / Total</div>
+          <p>FID NMHC analyzer configured for methane, non-methane, and total hydrocarbon measurement in oven-heated applications.</p>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img">
+          <img src="model_210.png" alt="Model 210 FID methane ethane NMEHC total hydrocarbon analyzer" loading="lazy">
+        </div>
+        <div class="product-content">
+          <p class="product-category">VOC Analyzer</p>
+          <h3><a class="product-name-link" href="#model210Detail" onclick="showProductDetail('model210Detail'); return false;">Model 210</a></h3>
+          <div class="product-specs">Dual FID | Oven heated | Methane / Ethane / NMEHC / Total</div>
+          <p>Oven-heated analyzer for methane, ethane, non-methane-ethane hydrocarbons, and total hydrocarbons. One FID supports speciated readings while the second continuously measures total hydrocarbons.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cemsProducts" class="product-section">
+    <div class="section-title">
+      <h2>Continuous Emission Monitoring Systems (CEMS)</h2>
+      <p>Integrated emissions monitoring systems built around analyzer, control, data, and support equipment for continuous measurement applications.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Custom Integrated Systems</h3>
+        <p>
+          VIG provides CEMS integration services for applications that require analyzers,
+          control panels, chart recorders, data acquisition, sequencing, wiring, and support
+          equipment to operate as a complete monitoring package.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Analyzer-Based CEMS</h3>
+        <p>
+          Systems can incorporate VIG hydrocarbon analyzers such as Model 20, Model 200/1,
+          dual-channel analyzers, multipoint sequencers, flow control panels, data logging
+          equipment, and combustion / zero air generators.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Application-Specific Builds</h3>
+        <p>
+          CEMS packages may be designed for abatement efficiency, VOC destruction control,
+          carbon adsorption control, process monitoring, stack monitoring, or replacement of
+          outdated monitoring systems.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="componentsParts" class="product-section">
+    <div class="section-title">
+      <h2>Components</h2>
+      <p>Components listed by VIG for analyzer, sample system, and emissions monitoring equipment support.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3><a class="product-name-link" href="#ptfeBurnerDetail" onclick="showProductDetail('ptfeBurnerDetail'); return false;">PTFE Isolated Burner (FID)</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#customElectronicsDetail" onclick="showProductDetail('customElectronicsDetail'); return false;">Custom Electronics</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#heatedSamplePumpsDetail" onclick="showProductDetail('heatedSamplePumpsDetail'); return false;">Custom Heated Sample Pumps</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#sampleFilterDetail" onclick="showProductDetail('sampleFilterDetail'); return false;">Dual-Stage Stainless Steel Sample Filter</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#displayDetail" onclick="showProductDetail('displayDetail'); return false;">Digital / Graphical Display</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#tubingDetail" onclick="showProductDetail('tubingDetail'); return false;">PTFE and Stainless Steel Tubing</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#solenoidValvesDetail" onclick="showProductDetail('solenoidValvesDetail'); return false;">Stainless Steel Solenoid Valves</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#heatedOvenDetail" onclick="showProductDetail('heatedOvenDetail'); return false;">Heated Oven</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#columnDetail" onclick="showProductDetail('columnDetail'); return false;">Column</a></h3>
+      </div>
+    </div>
+  </div>
+
+  <div id="peripherals" class="product-section">
+    <div class="section-title">
+      <h2>Peripherals</h2>
+      <p>Peripheral devices listed by VIG for analyzer operation, sample handling, sequencing, and data recording.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3><a class="product-name-link" href="#airGeneratorsDetail" onclick="showProductDetail('airGeneratorsDetail'); return false;">Combustion Air Generators / Zero Air Generators</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#dilutionSystemsDetail" onclick="showProductDetail('dilutionSystemsDetail'); return false;">Dilution Systems</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#sequencersDetail" onclick="showProductDetail('sequencersDetail'); return false;">Heated Multipoint Sequencers</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#recordersLoggersDetail" onclick="showProductDetail('recordersLoggersDetail'); return false;">Chart Recorders / Data Loggers</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#liquidGasSeparatorsDetail" onclick="showProductDetail('liquidGasSeparatorsDetail'); return false;">Liquid / Gas Separators</a></h3>
+      </div>
+
+      <div class="card">
+        <h3><a class="product-name-link" href="#temperatureControllersDetail" onclick="showProductDetail('temperatureControllersDetail'); return false;">Temperature Controllers and Heated Sample Lines</a></h3>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="model10Detail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="product-detail-img">
+            <img src="model_10.png" alt="Model 10 FID total hydrocarbon analyzer">
+          </div>
+        </div>
+        <div>
+          <p class="product-category">THC Analyzer</p>
+          <h3>Model 10 Hydrocarbon Analyzer</h3>
+          <p class="product-detail-spec">FID Single Channel, Spot Heated Total Hydrocarbon Analyzer</p>
+          <p>The Model 10 is a microprocessor-based, spot-heated total hydrocarbon gas analyzer designed for accurate, sensitive, and stable measurement.</p>
+          <p>It uses a flame ionization detector for continuous measurement of a dry sample stream at ambient temperature. The detector is spot heated to help prevent condensation and support repeatable performance across a broad range of hydrocarbon concentrations in gaseous mixtures or ambient air.</p>
+          <p class="method-note"><strong>Best fit:</strong> Single-point total hydrocarbon measurement where the sample stream is dry and ambient-temperature operation is appropriate.</p>
+        </div>
+      </div>
+
+      <details class="collapsible-section product-data-actions" open>
+        <summary>Resources & Downloads</summary>
+        <div class="resource-list">
+          <div class="resource-column">
+            <ul>
+              <li>
+                <span class="resource-label">3D Model</span>
+                <a class="resource-link" href="#">3D STEP File</a>
+              </li>
+              <li>
+                <span class="resource-label">2D Drawing</span>
+                <a class="resource-link" href="#">Model 10 Drawing</a>
+              </li>
+            </ul>
+          </div>
+          <div class="resource-column">
+            <ul>
+              <li>
+                <span class="resource-label">Datasheet</span>
+                <a class="resource-link" href="model_10_datasheet.pdf" download>Model 10 Product Datasheet</a>
+              </li>
+              <li>
+                <span class="resource-label">Other</span>
+                <a class="resource-link" href="#">RoHS Certificate</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details class="collapsible-section spec-toggle" open>
+        <summary>Standard Specifications</summary>
+      <dl class="spec-list">
+        <div class="spec-row">
+          <dt>Measuring method</dt>
+          <dd>1x spot heated flame ionization detector (FID)</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Measurement ranges <small>(Four ranges per analyzer)</small></dt>
+          <dd>
+            <p>Standard ranges: 0-10, 0-100, 0-1000, and 0-10000 ppm with 0.01 ppm lower detection limit; or</p>
+            <p>0-1000, 0-10000, 0-100000, and 0-100000 ppm with 0.1 ppm lower detection limit. Other ranges are available upon request.</p>
+          </dd>
+        </div>
+        <div class="spec-row">
+          <dt>Zero and span noise</dt>
+          <dd>Less than 0.5% of full scale</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Zero and span drift</dt>
+          <dd>+/- 1.5% full scale per 24 hours</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Linearity</dt>
+          <dd>Within 1.5% of full scale through all ranges</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Repeatability</dt>
+          <dd>Within 1.5% of full scale through all ranges</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Stability</dt>
+          <dd>Within 1.5% of full scale through all ranges</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Oxygen synergism</dt>
+          <dd>Within 1.5% of full scale within selected range</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Response time</dt>
+          <dd>Within 5 seconds to 90% of final reading</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Ambient temperature</dt>
+          <dd>50 degrees F to 120 degrees F</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Flow rate</dt>
+          <dd>Standard: 4 L/min; or 10 L/min upon request</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Physical dimensions</dt>
+          <dd>19 in. wide front panel; 16.75 in. wide chassis; 18 in. deep chassis; 21 in. deep with fittings and handles; 7 in. high</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Weight</dt>
+          <dd>35 - 45 lbs, depending on options</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Safety</dt>
+          <dd>Flame-out indicator lamp; flame-out alarm contact on back panel; fuel shut-off; calibration and zero solenoid shut-off; optional sample shut-off</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Voltage output</dt>
+          <dd>Standard: 0-10 VDC; or 0-1 VDC or 0-5 VDC optional</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Current output</dt>
+          <dd>4-20 mA, sourcing</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Flame-out alarm</dt>
+          <dd>Normally open, low-current relay contact; closes on alarm; latching</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Concentration 1 alarm</dt>
+          <dd>Normally open, low-current relay contact; closes on alarm; latching</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Ignition</dt>
+          <dd>Automatic; can be set to manual by operator from front panel</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Glow plugs</dt>
+          <dd>Main and spare glow plugs installed; selectable by switch on back panel</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Warm-up time</dt>
+          <dd>Usable in approximately 45 minutes; stable in approximately 2 hours</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Display</dt>
+          <dd>Graphic, backlit, 240W x 64H pixels, high contrast, wide viewing angle</dd>
+        </div>
+      </dl>
+      </details>
+
+      <details class="collapsible-section spec-toggle" open>
+        <summary>Operational Requirements</summary>
+      <dl class="spec-list">
+        <div class="spec-row">
+          <dt>Fuel</dt>
+          <dd>UHP hydrogen at 18 psi incoming pressure standard; UHP hydrogen/helium mixture at 18 psi incoming pressure optional</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Combustion air</dt>
+          <dd>Oil/water/hydrocarbon-free instrument air at 18 psi incoming pressure</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Zero calibration gas</dt>
+          <dd>UHP zero grade air or nitrogen at 9 psi incoming pressure</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Span calibration gas</dt>
+          <dd>Known concentration of operator-selected hydrocarbons balanced in either air or nitrogen at 9 psi incoming pressure</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Optional gases</dt>
+          <dd>UHP zero grade air or nitrogen for units with dilution option at 18 psi incoming pressure; oil/water/hydrocarbon-free instrument air for cleaning options at 50 psi incoming pressure</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Power requirements</dt>
+          <dd>115VAC at 60 Hz at 720 W; optional 220 VAC at 50 Hz</dd>
+        </div>
+      </dl>
+      </details>
+    </article>
+  </div>
+
+  <div id="model102Detail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="product-detail-img">
+            <img src="model_10_2.png" alt="Model 10/2 FID dual channel total hydrocarbon analyzer">
+          </div>
+        </div>
+        <div>
+          <p class="product-category">THC Analyzer</p>
+          <h3>Model 10/2 Hydrocarbon Analyzer</h3>
+          <p class="product-detail-spec">FID Dual Channel, Spot Heated Total Hydrocarbon Analyzer</p>
+          <p>The Model 10/2 is a dual-channel, microprocessor-based, spot-heated total hydrocarbon gas analyzer built for accuracy, sensitivity, and stable operation.</p>
+          <p>Two flame ionization detectors provide continuous measurement of two independent dry sample streams at ambient temperature. Each detector is spot heated to reduce condensation risk and maintain reliable performance for a wide variety of hydrocarbon concentrations.</p>
+          <p class="method-note"><strong>Best fit:</strong> Applications that require two independent THC measurement points in a compact, spot-heated analyzer configuration.</p>
+        </div>
+      </div>
+
+      <details class="collapsible-section product-data-actions" open>
+        <summary>Resources & Downloads</summary>
+        <div class="resource-list">
+          <div class="resource-column">
+            <ul>
+              <li>
+                <span class="resource-label">3D Model</span>
+                <a class="resource-link" href="#">3D STEP File</a>
+              </li>
+              <li>
+                <span class="resource-label">2D Drawing</span>
+                <a class="resource-link" href="#">Model 10/2 Drawing</a>
+              </li>
+            </ul>
+          </div>
+          <div class="resource-column">
+            <ul>
+              <li>
+                <span class="resource-label">Datasheet</span>
+                <a class="resource-link" href="https://www.vigindustries.com/s/Model-10-2.pdf">Model 10/2 Product Datasheet</a>
+              </li>
+              <li>
+                <span class="resource-label">Other</span>
+                <a class="resource-link" href="#">RoHS Certificate</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details class="collapsible-section spec-toggle" open>
+        <summary>Standard Specifications</summary>
+      <dl class="spec-list">
+        <div class="spec-row">
+          <dt>Measuring method</dt>
+          <dd>2x spot heated flame ionization detectors (FIDs)</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Measurement ranges <small>(Four ranges per analyzer)</small></dt>
+          <dd>
+            <p>Standard ranges: 0-10, 0-100, 0-1000, and 0-10000 ppm with 0.01 ppm lower detection limit; or</p>
+            <p>0-100, 0-1000, 0-10000, and 0-100000 ppm with 0.1 ppm lower detection limit. Other ranges are available upon request.</p>
+          </dd>
+        </div>
+        <div class="spec-row">
+          <dt>Zero and span noise</dt>
+          <dd>Less than 0.5% of full scale</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Zero and span drift</dt>
+          <dd>+/- 1.5% full scale per 24 hours</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Linearity</dt>
+          <dd>Within 1.5% of full scale through all ranges</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Repeatability</dt>
+          <dd>Within 1.5% of full scale through all ranges</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Stability</dt>
+          <dd>Within 1.5% of full scale through all ranges</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Oxygen synergism</dt>
+          <dd>Within 1.5% of full scale within selected range</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Response time</dt>
+          <dd>Within 5 seconds to 90% of final reading</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Ambient temperature</dt>
+          <dd>50 degrees F to 120 degrees F</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Flow rate</dt>
+          <dd>Standard: 4 L/min; or 10 L/min upon request</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Physical dimensions</dt>
+          <dd>19 in. wide front panel; 16.75 in. wide chassis; 18 in. deep chassis; 21 in. deep with fittings and handles; 7 in. high</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Weight</dt>
+          <dd>35 - 45 lbs, depending on options</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Safety</dt>
+          <dd>Flame-out indicator lamp; flame-out alarm contact on back panel; fuel shut-off; calibration and zero solenoid shut-off; optional sample shut-off</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Voltage output</dt>
+          <dd>Standard: 0-10 VDC; or 0-1 VDC or 0-5 VDC optional</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Current output</dt>
+          <dd>4-20 mA, sourcing</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Flame-out alarm</dt>
+          <dd>Normally open, low-current relay contact; closes on alarm; latching</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Concentration 1 alarm</dt>
+          <dd>Normally open, low-current relay contact; closes on alarm; latching</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Ignition</dt>
+          <dd>Automatic; can be set to manual by operator from front panel</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Glow plugs</dt>
+          <dd>Main and spare glow plugs installed; selectable by switch on back panel</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Warm-up time</dt>
+          <dd>Usable in approximately 45 minutes; stable in approximately 2 hours</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Display</dt>
+          <dd>Graphic, backlit, 240W x 64H pixels, high contrast, wide viewing angle</dd>
+        </div>
+      </dl>
+      </details>
+
+      <details class="collapsible-section spec-toggle" open>
+        <summary>Operational Requirements</summary>
+      <dl class="spec-list">
+        <div class="spec-row">
+          <dt>Fuel</dt>
+          <dd>UHP hydrogen at 18 psi incoming pressure standard; UHP hydrogen/helium mixture at 18 psi incoming pressure optional</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Combustion air</dt>
+          <dd>Oil/water/hydrocarbon-free instrument air at 18 psi incoming pressure</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Zero calibration gas</dt>
+          <dd>UHP zero grade air or nitrogen at 9 psi incoming pressure</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Span calibration gas</dt>
+          <dd>Known concentration of operator-selected hydrocarbons balanced in either air or nitrogen at 9 psi incoming pressure</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Optional gases</dt>
+          <dd>UHP zero grade air or nitrogen for units with dilution option at 18 psi incoming pressure; oil/water/hydrocarbon-free instrument air for cleaning options at 50 psi incoming pressure</dd>
+        </div>
+        <div class="spec-row">
+          <dt>Power requirements</dt>
+          <dd>115VAC at 60 Hz at 720 W; optional 220 VAC at 50 Hz</dd>
+        </div>
+      </dl>
+      </details>
+    </article>
+  </div>
+
+  <div id="model20Detail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="product-detail-img">
+            <img src="model_20.png" alt="Model 20 FID oven heated total hydrocarbon analyzer">
+          </div>
+        </div>
+        <div>
+          <p class="product-category">THC Analyzer</p>
+          <h3>Model 20 Hydrocarbon Analyzer</h3>
+          <p class="product-detail-spec">FID Single Channel, Oven Heated Total Hydrocarbon Analyzer</p>
+          <p>The Model 20 is a microprocessor-based, oven-heated total hydrocarbon analyzer designed to continuously measure one point with high accuracy, sensitivity, and stability.</p>
+          <p>The flame ionization detector, sample filter, sample lines, solenoid valves, pump head, capillaries, and other sample-contact components are maintained in a temperature-controlled heated oven. This heated design helps prevent condensation and supports repeatable measurement in gaseous mixtures or ambient air.</p>
+          <p class="method-note"><strong>Best fit:</strong> Single-point THC applications where heated sample handling is needed for stable, repeatable measurement.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div id="model202Detail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="product-detail-img">
+            <img src="model_20_2.png" alt="Model 20/2 FID dual channel oven heated total hydrocarbon analyzer">
+          </div>
+        </div>
+        <div>
+          <p class="product-category">THC Analyzer</p>
+          <h3>Model 20/2 Hydrocarbon Analyzer</h3>
+          <p class="product-detail-spec">FID Dual Channel, Oven Heated Total Hydrocarbon Analyzer</p>
+          <p>The Model 20/2 is a microprocessor-based, oven-heated total hydrocarbon analyzer configured to continuously measure two points.</p>
+          <p>It uses two flame ionization detectors, with detectors, sample filters, sample lines, solenoid valves, pump heads, capillaries, and sample-contact components maintained in a temperature-controlled heated oven. The oven-heated flow path helps prevent condensation and supports stable performance across a wide range of hydrocarbon concentrations.</p>
+          <p class="method-note"><strong>Best fit:</strong> Dual-point THC measurement where heated sample handling and independent detector channels are required.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div id="model200Detail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="product-detail-img">
+            <img src="model_200.png" alt="Model 200 FID methane non-methane total hydrocarbon analyzer">
+          </div>
+        </div>
+        <div>
+          <p class="product-category">VOC Analyzer</p>
+          <h3>Model 200 Hydrocarbon Analyzer</h3>
+          <p class="product-detail-spec">FID Dual Channel, Methane / Non-Methane / Total, Oven Heated Hydrocarbon Analyzer</p>
+          <p>The Model 200 is a microprocessor-based, oven-heated methane, non-methane, and total hydrocarbon gas analyzer designed for accurate and stable measurement.</p>
+          <p>Two independent flame ionization detectors are used: one provides a continuous real-time total hydrocarbon reading, while the second works with a gas chromatography column to separate methane from non-methane components.</p>
+          <p>The sample is moved through an internal heated pump. A portion of the sample is trapped, separated through the GC column, measured for methane, and then backflushed through the column to obtain the non-methane component. Detectors, sample lines, capillaries, valves, the GC column, and related sample-contact components are maintained in a temperature-controlled oven.</p>
+          <p class="method-note"><strong>Best fit:</strong> Applications that require real-time THC plus separate methane and non-methane hydrocarbon readings.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div id="model2001Detail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="product-detail-img">
+            <img src="model_200_1.png" alt="Model 200/1 FID methane non-methane hydrocarbon analyzer">
+          </div>
+        </div>
+        <div>
+          <p class="product-category">VOC Analyzer</p>
+          <h3>Model 200/1 Hydrocarbon Analyzer</h3>
+          <p class="product-detail-spec">FID Methane / Non-Methane, Oven Heated Hydrocarbon Analyzer</p>
+          <p>The Model 200/1 is a microprocessor-based, oven-heated methane and non-methane hydrocarbon analyzer that measures at preset intervals with one flame ionization detector.</p>
+          <p>After the sample reaches the analyzer through the internal heated pump, a portion is trapped and sent through a GC column to separate methane from the total sample before measurement. After methane is read, the remaining sample is backflushed through the column for the non-methane reading, with results shown on the LCD display.</p>
+          <p>The detector, sample lines, GC column, solenoid valves, and sample-contact components are maintained in a controlled heated oven to help prevent condensation and support reliable analysis.</p>
+          <p class="method-note"><strong>Best fit:</strong> Methane and non-methane hydrocarbon monitoring where interval-based readings are appropriate.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div id="model200tDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="product-detail-img">
+            <img src="model_200t.png" alt="Model 200T FID methane non-methane total hydrocarbon analyzer">
+          </div>
+        </div>
+        <div>
+          <p class="product-category">VOC Analyzer</p>
+          <h3>Model 200T Hydrocarbon Analyzer</h3>
+          <p class="product-detail-spec">FID Methane / Non-Methane / Total, Oven Heated Hydrocarbon Analyzer</p>
+          <p>The Model 200T is listed by VIG as an oven-heated methane, non-methane, and total hydrocarbon analyzer for NMHC measurement applications.</p>
+          <p>It is intended for projects that require methane, non-methane, and total hydrocarbon reporting in an oven-heated analyzer configuration. Because the live Products page does not provide a separate Model 200T detail page, VIG should be contacted for the most current configuration and specification details.</p>
+          <p class="method-note"><strong>Best fit:</strong> Methane, non-methane, and total hydrocarbon applications where an oven-heated NMHC analyzer is required.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div id="model210Detail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="product-detail-img">
+            <img src="model_210.png" alt="Model 210 FID methane ethane NMEHC total hydrocarbon analyzer">
+          </div>
+        </div>
+        <div>
+          <p class="product-category">VOC Analyzer</p>
+          <h3>Model 210 Hydrocarbon Analyzer</h3>
+          <p class="product-detail-spec">FID Oven Heated Methane / Ethane / NMEHC / Total Hydrocarbon Analyzer</p>
+          <p>The Model 210 is a microprocessor-based, oven-heated analyzer for methane, ethane, non-methane-ethane hydrocarbons, and total hydrocarbons.</p>
+          <p>It uses two flame ionization detectors. One detector supports methane, ethane, and non-methane-ethane readings after a small portion of the sample is separated through a GC column. The second detector continuously measures total hydrocarbons in real time.</p>
+          <p>After methane and ethane are read, the remaining sample is backflushed through the column for the non-methane-ethane component. The LCD display reports methane, ethane, residual non-methane-ethane, and total hydrocarbons. Detectors, sample lines, the GC column, valves, and sample-contact components are maintained in a controlled heated oven.</p>
+          <p class="method-note"><strong>Best fit:</strong> Applications requiring methane, ethane, non-methane-ethane, and total hydrocarbon measurement from one analyzer platform.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div id="ptfeBurnerDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>PTFE Isolated Burner (FID)</h3>
+      <p>VIG manufactures its own flame ionization detector burner assembly for analyzer applications where clean sample contact, stable ignition, and field serviceability are important.</p>
+      <p>Sample-exposed parts and related hardware are made from 316 stainless steel. The inner chamber is lined with PTFE to help reduce corrosion and contamination risk in the detector flow path.</p>
+      <p>Twist-type BNC electrical connections support secure contact, and the glow plug is positioned in the exhaust path to support reliable ignition. Capillaries are designed so customers can remove and replace them in the field.</p>
+      <p class="method-note"><strong>Service note:</strong> Contact VIG to confirm burner compatibility with your analyzer model and sample conditions.</p>
+    </article>
+  </div>
+
+  <div id="customElectronicsDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>Custom Electronics</h3>
+      <p>VIG designs and manufactures the analyzer electronics used in its systems, with the exception of the graphical display.</p>
+      <p>Component selection is handled with reliability in mind, helping support stable analyzer operation, maintainable service, and compatibility with VIG control architecture.</p>
+      <p class="method-note"><strong>Service note:</strong> For replacement boards, upgrades, or troubleshooting, contact VIG with the analyzer model and serial number.</p>
+    </article>
+  </div>
+
+  <div id="heatedSamplePumpsDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>Custom Heated Sample Pumps</h3>
+      <p>VIG offers cold-head and heated-head sample pumps for analyzer and sample system applications.</p>
+      <p>Available flow rates include 5.5 L/M and 14 L/M. Heated pump heads are manufactured by VIG and include interchangeable cartridge heaters for serviceable thermal control.</p>
+      <p>The pumps use PTFE diaphragms, PTFE flapper-type valves, and 316 stainless steel fittings to support clean sample handling and long-term reliability.</p>
+      <p class="method-note"><strong>Service note:</strong> VIG can help select the correct pump configuration based on flow requirement, sample condition, and analyzer model.</p>
+    </article>
+  </div>
+
+  <div id="sampleFilterDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>Dual-Stage Stainless Steel Sample Filter</h3>
+      <p>VIG manufactures a dual-stage stainless steel sample filter for protecting analyzer flow paths from particulate contamination.</p>
+      <p>The assembly uses a two-piece 316 stainless steel body with 1/8 inch FNPT connections on each end, PTFE seals, and a 316 stainless steel spring.</p>
+      <p>The first-stage sintered stainless steel element captures particles 60 microns and larger. The second-stage element captures particles 10 microns and larger. Interchangeable elements as small as 0.2 micron are available upon request.</p>
+      <p class="method-note"><strong>Service note:</strong> The dual-stage design supports long service life and practical maintenance by allowing filter elements to be replaced.</p>
+    </article>
+  </div>
+
+  <div id="displayDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>Digital / Graphical Display</h3>
+      <p>VIG hydrocarbon analyzers use graphical displays paired with the analyzer microprocessor for direct instrument control.</p>
+      <p>The display and keypad interface allow operators to control the analyzer from the front panel. Real-time display updates help users monitor instrument status and readings without delay.</p>
+      <p class="method-note"><strong>Service note:</strong> Display configuration may vary by model and analyzer generation. Contact VIG for replacement or compatibility support.</p>
+    </article>
+  </div>
+
+  <div id="tubingDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>PTFE and Stainless Steel Tubing</h3>
+      <p>VIG uses PTFE and stainless steel tubing to support durable, corrosion-resistant analyzer flow paths.</p>
+      <p>PTFE tubing is supplied as TFE or FEP for long-lasting service. Tubing is color coded by use: clear sample lines help make contamination visible, red identifies fuel, blue identifies combustion air, and green identifies carrier gas for methane units.</p>
+      <p>Metal tubing is made from 316 stainless steel for sample-contact applications that require stainless construction.</p>
+      <p class="method-note"><strong>Service note:</strong> VIG can help identify correct tubing materials and color coding for maintenance or rebuild work.</p>
+    </article>
+  </div>
+
+  <div id="solenoidValvesDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>Stainless Steel Solenoid Valves</h3>
+      <p>VIG analyzers use stainless steel solenoids and custom manifolds in sample-contact portions of the system.</p>
+      <p>Stainless steel construction is used wherever the sample comes into contact with the valve or manifold, helping support clean flow control and durable operation.</p>
+      <p class="method-note"><strong>Service note:</strong> For valve replacement, provide the analyzer model and application so VIG can confirm the correct valve and manifold arrangement.</p>
+    </article>
+  </div>
+
+  <div id="heatedOvenDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>Heated Oven</h3>
+      <p>VIG heated analyzers include a temperature-controlled oven managed by the analyzer microprocessor.</p>
+      <p>Sample-contact components are kept inside the oven to help prevent moisture condensation and detector contamination. This controlled heated environment supports repeatable measurements in applications where sample temperature and condensation control matter.</p>
+      <p class="method-note"><strong>Service note:</strong> Oven temperature configuration and serviced components vary by analyzer model.</p>
+    </article>
+  </div>
+
+  <div id="columnDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Component</p>
+      <h3>Column</h3>
+      <p>GC columns are used in VIG methane, non-methane, ethane, and related hydrocarbon analyzer configurations to separate target compounds before FID measurement.</p>
+      <p>Column selection affects separation performance, response timing, and the analyzer's ability to distinguish methane, ethane, and residual hydrocarbon components.</p>
+      <p class="method-note"><strong>Service note:</strong> The live VIG Products page lists Column as a component but does not provide a separate detail description. Contact VIG to confirm the correct column for your analyzer model, target compounds, and operating range.</p>
+    </article>
+  </div>
+
+  <div id="airGeneratorsDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Peripheral</p>
+      <h3>Combustion Air Generators / Zero Air Generators</h3>
+      <p>VIG offers zero air and combustion air generators for analyzer support applications.</p>
+      <p>These generators are built to customer-specific requirements with no additional development charge, allowing the air supply package to be matched to the analyzer, site, and project needs.</p>
+      <p class="method-note"><strong>Service note:</strong> Contact VIG with flow, purity, and analyzer requirements for pricing and configuration guidance.</p>
+    </article>
+  </div>
+
+  <div id="dilutionSystemsDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Peripheral</p>
+      <h3>Dilution Systems</h3>
+      <p>Dilution systems support analyzer applications where the sample concentration or sample condition must be adjusted before measurement.</p>
+      <p>They can help bring a sample into an appropriate measurement range, support instrument protection, and improve compatibility with the selected analyzer configuration.</p>
+      <p class="method-note"><strong>Service note:</strong> The live VIG detail page lists this item but provides limited description. Contact VIG to define the dilution ratio, flow requirements, and sample conditions for your application.</p>
+    </article>
+  </div>
+
+  <div id="sequencersDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Peripheral</p>
+      <h3>Heated Multipoint Sequencers</h3>
+      <p>VIG builds custom heated multipoint sequencers to customer specifications.</p>
+      <p>Sequencers are used when an analyzer must automatically switch between multiple sample points while maintaining appropriate sample handling conditions.</p>
+      <p>VIG offers this customization with no additional development charge and can help define the number of points, sequence timing, control needs, and heated sample path requirements.</p>
+      <p class="method-note"><strong>Service note:</strong> Contact VIG with sample point count, timing, temperature, and control requirements.</p>
+    </article>
+  </div>
+
+  <div id="recordersLoggersDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Peripheral</p>
+      <h3>Chart Recorders / Data Loggers</h3>
+      <p>VIG offers chart recorders and data loggers to meet customer-specific recording and acquisition requirements, including single-pen, multi-pen, and digital data acquisition options.</p>
+      <h4>DataChart 2000 Paperless Data / Chart Recorder</h4>
+      <p>The DataChart 2000 supports 2, 4, 6, or 12 direct universal isolated inputs selectable for DC voltage, DC current, and thermocouples. Touch-screen control supports fast setup and operation.</p>
+      <p>Its 5.6 inch active matrix TFT color display supports clear viewing, with a blue monochrome display available as an economical option. Data can be stored in nonvolatile internal RAM and downloaded automatically or on demand to removable media.</p>
+      <p>Communication options include RS232C with modem support, RS485 MODBUS for network integration, and 10BaseT Ethernet for LAN or WAN access using TCP/IP.</p>
+      <h4>DataTaker 4000 Data Logger</h4>
+      <p>The DataTaker 4000 series includes compact, self-powered data loggers for 1, 2, 4, and 5 channel analog voltage and current loop signals.</p>
+      <ul>
+        <li>12-bit resolution for accurate and sensitive readings.</li>
+        <li>Nonvolatile memory for data protection.</li>
+        <li>Automatic conversion to engineering units.</li>
+        <li>Battery-powered operation for long-term installation needs.</li>
+      </ul>
+      <p class="method-note"><strong>Service note:</strong> VIG can help match recording hardware to required channels, signal types, data access, and reporting needs.</p>
+    </article>
+  </div>
+
+  <div id="liquidGasSeparatorsDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Peripheral</p>
+      <h3>Liquid / Gas Separators</h3>
+      <p>VIG manufactures its own liquid / gas separator for sample conditioning applications where liquid must be removed before the sample reaches the analyzer.</p>
+      <p>The separator uses a two-piece 316 stainless steel housing, a Teflon membrane, pre-filtration at the inlet, and 1/8 inch FNPT connections at the outlet and drain.</p>
+      <p>The membrane allows gases to pass while preventing liquid from passing through. Separated liquid falls into an external collection container that can be emptied as needed.</p>
+      <h4>Principle of Operation</h4>
+      <p>A cooling coil lowers the incoming sample gas temperature to room temperature, converting liquids in the gas phase into liquid phase. The cooled sample enters the separator, where the porous Teflon membrane allows gas to pass through while blocking liquid due to surface tension. The dry gas exits the separator for analysis.</p>
+      <p class="method-note"><strong>Service note:</strong> This peripheral helps protect analyzer components in applications where moisture or condensable liquids are present.</p>
+    </article>
+  </div>
+
+  <div id="temperatureControllersDetail" class="product-detail">
+    <button class="back-button" type="button" onclick="showProductsSummary()">&#8592; Back to Product</button>
+    <article class="method-paper">
+      <p class="product-category">Peripheral</p>
+      <h3>Temperature Controllers and Heated Sample Lines</h3>
+      <p>Temperature controllers and heated sample lines support emissions monitoring applications where the sample path must remain heated from the source to the analyzer.</p>
+      <p>Maintaining a controlled sample temperature helps reduce condensation risk, preserve sample integrity, and improve measurement reliability in heated FID analyzer systems.</p>
+      <p class="method-note"><strong>Service note:</strong> The live VIG Products page lists this item but does not provide a separate detail description. Contact VIG to confirm heated line length, temperature range, controller requirements, and analyzer compatibility.</p>
+    </article>
+  </div>
+</section>
+
+<section id="service" class="page">
+  <div class="section-title">
+    <h2>Service and Technical Support</h2>
+    <p>
+      VIG provides service support for emissions monitoring equipment throughout the
+      life of the system, including maintenance, repair, troubleshooting, calibration
+      assistance, application review, and configuration guidance.
+    </p>
+    <p>
+      Service is the ongoing technical work required to keep analyzers, sample systems,
+      controls, and related monitoring equipment operating reliably in the field. VIG
+      supports customers before startup, during operation, and when equipment requires
+      evaluation, adjustment, replacement parts, or repair.
+    </p>
+  </div>
+
+  <div class="service-panel">
+    <div class="cards">
+      <div class="card">
+        <h3>Maintenance & Repair</h3>
+        <p>
+          Scheduled and on-demand service helps reduce downtime, correct equipment
+          problems, and maintain dependable analyzer operation. Support may include
+          inspection, cleaning, component replacement, flow-path review, leak checks,
+          detector evaluation, and repair coordination.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Technical Support</h3>
+        <p>
+          Technical support helps customers evaluate instrument behavior, review
+          operating conditions, identify likely causes of faults, and select the correct
+          equipment, parts, or service path for the application.
+        </p>
+        <p>
+          <a class="product-name-link" href="#products" onclick="showPageById('products'); return false;">View VIG products</a>
+          for analyzer models, components, parts, and peripherals commonly supported by VIG.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Custom Modifications</h3>
+        <p>
+          VIG can help adapt systems to customer requirements, site conditions, sample
+          characteristics, measurement objectives, and reporting needs. Modification
+          support may include heated sample handling, control changes, peripheral
+          integration, and application-specific configuration review.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rentals" class="page">
+  <div class="section-title">
+    <h2>Rental Hydrocarbon Analyzers</h2>
+    <p>
+      Short-term and project-based analyzer rentals for source testing, temporary
+      monitoring, backup equipment, and time-sensitive compliance work.
+    </p>
+    <p>
+      VIG helps customers select the appropriate rental model for the application,
+      confirm availability, and coordinate the rental timeline around project needs.
+    </p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Temporary Monitoring</h3>
+      <p>FID-based rental analyzers for short-term measurement projects, field testing, and temporary emissions monitoring needs.</p>
+    </div>
+
+    <div class="card">
+      <h3>Backup Equipment</h3>
+      <p>Equipment support when an analyzer is down for maintenance, repair, troubleshooting, or scheduled service.</p>
+    </div>
+
+    <div class="card">
+      <h3>Project Support</h3>
+      <p>Responsive rental options for contractors, facilities, and compliance teams working against fixed project schedules.</p>
+    </div>
+  </div>
+
+  <div class="about-list">
+    <h3>Available Rental Models</h3>
+    <p>
+      Rental inventory may vary by schedule and configuration. Please contact VIG
+      to confirm the best available unit for your application.
+    </p>
+
+    <ul>
+      <li><a class="product-name-link" href="#model20Detail" onclick="showProductDetail('model20Detail'); return false;">Model 20 Oven Heated THC Analyzer</a></li>
+      <li><a class="product-name-link" href="#model202Detail" onclick="showProductDetail('model202Detail'); return false;">Model 20/2 Oven Heated Dual Channel THC Analyzer</a></li>
+      <li><a class="product-name-link" href="#model200Detail" onclick="showProductDetail('model200Detail'); return false;">Model 200 Methane / Non-Methane / THC Analyzer</a></li>
+      <li><a class="product-name-link" href="#model2001Detail" onclick="showProductDetail('model2001Detail'); return false;">Model 200/1 Methane / Non-Methane (NMHC) Hydrocarbon Analyzer</a></li>
+      <li><a class="product-name-link" href="#model200tDetail" onclick="showProductDetail('model200tDetail'); return false;">Model 200T Methane / Non-Methane / THC Analyzer</a></li>
+      <li><a class="product-name-link" href="#model210Detail" onclick="showProductDetail('model210Detail'); return false;">Model 210 Methane / Ethane / Non-Methane-Ethane (NMEHC) / THC Analyzer</a></li>
+    </ul>
+
+    <p class="about-contact-note">
+      Contact VIG for current pricing and availability before scheduling a rental.
+      Weekly rental periods include seven (7) days of analyzer use plus one (1) day
+      for shipment to the customer and one (1) day for return shipment to VIG.
+    </p>
+  </div>
+
+  <div class="about-list">
+    <h3>Rental Terms</h3>
+    <ul>
+      <li>Customer is responsible for all shipping charges and for insuring the unit during shipment.</li>
+      <li>Rental analyzers are provided in good faith for use within the analyzer's operating limitations.</li>
+      <li>Customer is responsible for damage caused by mishandling, misuse, or operation outside the intended limits of the equipment.</li>
+      <li>If shipping damage occurs, the shipping party is responsible for filing the claim with the shipping company when the unit has been properly insured.</li>
+      <li>Rental rates are quoted in U.S. dollars.</li>
+    </ul>
+
+    <p class="about-contact-note">
+      VIG can help review your measurement requirement, rental timing, shipment
+      window, and support needs so the analyzer arrives ready for the project.
+    </p>
+  </div>
+</section>
+
+<section id="about" class="page">
+  <div class="section-title">
+    <h2>About VIG Industries</h2>
+    <p>
+      VIG Industries manufactures, services, and rents environmental emissions monitoring
+      equipment with a focus on FID-based hydrocarbon analyzer systems.
+    </p>
+    <p>
+      Our mission is to remain the customer's primary service provider before, during, and
+      long after equipment delivery, supporting analyzer selection, startup, maintenance,
+      repair, modifications, rentals, and ongoing reliability needs.
+    </p>
+  </div>
+
+  <div class="about-list">
+    <p>
+      Since 1993, VIG Industries has supported customers with single and dual channel
+      flame ionization detector (FID) based gas chromatography systems, volatile organic
+      compound (VOC) monitors, total hydrocarbon (THC) analyzers, and related emissions
+      monitoring equipment.
+    </p>
+
+    <ul>
+      <li>Manufactures and supports a complete product line of microprocessor-controlled hydrocarbon analyzers and combustion / zero air generators.</li>
+      <li>Provides scheduled maintenance, repair, troubleshooting, and long-term support for equipment already in the field.</li>
+      <li>Provides peripheral devices such as chart recorders / data loggers, programmable logic controllers (PLC), and precision components for VIG emission monitoring equipment and equipment from other manufacturers.</li>
+      <li>Helps customers evaluate monitoring needs, select analyzer configurations, and plan complete monitoring systems around site-specific requirements.</li>
+      <li>Supports Continuous Emissions Monitoring (CEM) system integration when a project calls for a broader monitoring solution.</li>
+      <li>Offers rental hydrocarbon analyzers for temporary needs and trade-in options toward new analyzer equipment.</li>
+    </ul>
+
+    <p class="about-contact-note">
+      VIG engineers are eager to assist with monitoring needs. Please contact us with
+      questions, support requests, or equipment orders.
+    </p>
+  </div>
+
+  <div class="about-list client-list">
+    <h3>Clients</h3>
+    <ul>
+      <li>ADM</li>
+      <li>Air Hygiene International</li>
+      <li>Alcon Pharmaceutical</li>
+      <li>Anheuser-Busch</li>
+      <li>ARI</li>
+      <li>Ashtead Technology</li>
+      <li>Barr Engineering</li>
+      <li>Bio Reaction</li>
+      <li>BMW of North America</li>
+      <li>Boeing</li>
+      <li>CEM Service Group</li>
+      <li>Cetcon Environmental</li>
+      <li>ChemDesign</li>
+      <li>Cherokee Instruments</li>
+      <li>City of Palo Alto</li>
+      <li>Clean Air Engineering</li>
+      <li>Clorox</li>
+      <li>Crown Solution</li>
+      <li>Dominion Transmissions</li>
+      <li>E-3 Killam</li>
+      <li>El Paso Pipeline</li>
+      <li>ENSR</li>
+      <li>Ford Motor Company</li>
+      <li>Gas Technology Institute</li>
+      <li>H.B. Fuller</li>
+      <li>Haworth</li>
+      <li>Honeywell</li>
+      <li>Interpoll Labs</li>
+      <li>Kurz</li>
+      <li>Michelin</li>
+      <li>NASA</li>
+      <li>Oakley</li>
+      <li>Oilind and Safety</li>
+      <li>PACE Analytical</li>
+      <li>Philip / PSC</li>
+      <li>Raytheon</li>
+      <li>REMO</li>
+      <li>Rice University</li>
+      <li>RSA</li>
+      <li>S.C. Johnson</li>
+      <li>San Diego APCD</li>
+      <li>Shell Development</li>
+      <li>Siemens Power Generation</li>
+      <li>Sterling Performance</li>
+      <li>United McGill</li>
+      <li>University of Arizona</li>
+      <li>University of Utah</li>
+      <li>US DOE METC</li>
+      <li>Von Roll America</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="page">
+  <div class="section-title">
+    <h2>Request Equipment or Service</h2>
+    <p>Submit your product request, quantity, and any custom modification notes.</p>
+  </div>
+
+  <form action="mailto:jason.lin25@outlook.com" method="POST" enctype="text/plain" onsubmit="return validateQuoteRequest()">
+    <label>
+      Customer Name *
+      <input type="text" name="Customer Name" required>
+    </label>
+
+    <label>
+      Email *
+      <input type="email" name="Email" required>
+    </label>
+
+    <label>
+      Phone
+      <input type="tel" name="Phone">
+    </label>
+
+    <div class="quote-request-group">
+      <span class="form-label">Quote Request *</span>
+      <input type="hidden" id="quoteRequestValue" name="Quote Request" required>
+      <div class="quote-request-options">
+        <label>
+          <input type="checkbox" value="Service" onchange="handleQuoteRequestChange()">
+          Service
+        </label>
+        <label>
+          <input type="checkbox" value="Rental" onchange="handleQuoteRequestChange()">
+          Rental
+        </label>
+        <label>
+          <input type="checkbox" value="Product Purchase" onchange="handleQuoteRequestChange()">
+          Product Purchase
+        </label>
+        <label>
+          <input type="checkbox" value="Components Purchase" onchange="handleQuoteRequestChange()">
+          Components Purchase
+        </label>
+        <label>
+          <input type="checkbox" value="Other" onchange="handleQuoteRequestChange()">
+          Other
+        </label>
+      </div>
+    </div>
+
+    <label id="otherQuoteRequestField" class="conditional-field">
+      Other Quote Request
+      <input type="text" name="Other Quote Request" placeholder="Tell us what the request is about">
+    </label>
+
+    <div id="productList"></div>
+
+    <label>
+      Comments / Custom Modifications
+      <textarea name="Comments" rows="5" placeholder="Describe your application, method requirement, gases measured, sample conditions, timeline, or service needs."></textarea>
+    </label>
+
+    <button class="submit" type="submit">Submit Request</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-left">
+      <p><strong>VIG Industries, Inc.</strong></p>
+      <p>&copy; 1998 - 2026</p>
+    </div>
+
+    <div class="footer-center">
+      <p><strong>Mailing Address</strong></p>
+      <p>
+        4051 E. La Palma, Suite C<br>
+        Anaheim, California 92807-1751
+      </p>
+    </div>
+
+    <div class="footer-right">
+      <p><strong>Phone:</strong> (714) 632 - 8200</p>
+      <p><strong>Email:</strong> service@vigindustries.com</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPage(pageId) {
+  showPageById(pageId);
+}
+
+function closeProductDropdown() {
+  const dropdown = document.querySelector(".nav-dropdown");
+
+  if (document.activeElement) {
+    document.activeElement.blur();
+  }
+
+  if (dropdown) {
+    dropdown.classList.add("menu-closed");
+    setTimeout(() => {
+      dropdown.classList.remove("menu-closed");
+    }, 250);
+  }
+}
+
+function showPageById(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.getElementById(pageId).classList.add("active");
+  document.getElementById("homeDetails").classList.toggle("active", pageId === "home");
+  document.getElementById("heroHeader").classList.toggle("solid-header", pageId !== "home");
+
+  if (pageId === "methods") {
+    showMethodsSummary();
+  }
+
+  if (pageId === "products") {
+    showProductsSummary();
+  }
+
+  document.querySelectorAll("nav button").forEach(button => {
+    button.classList.remove("active");
+  });
+
+  const activeButton = document.querySelector(`nav button[data-page="${pageId}"]`);
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
+}
+
+function showMethodsSummary() {
+  const summary = document.getElementById("methodsSummary");
+  const details = document.querySelectorAll(".method-detail");
+
+  if (summary) {
+    summary.style.display = "block";
+  }
+
+  details.forEach(detail => {
+    detail.classList.remove("active");
+  });
+}
+
+function showMethodDetail(detailId) {
+  const summary = document.getElementById("methodsSummary");
+  const detail = document.getElementById(detailId);
+
+  if (summary) {
+    summary.style.display = "none";
+  }
+
+  document.querySelectorAll(".method-detail").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  if (detail) {
+    detail.classList.add("active");
+    detail.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function showProductsSummary() {
+  const summary = document.getElementById("productsSummary");
+  const details = document.querySelectorAll(".product-detail");
+
+  if (summary) {
+    summary.style.display = "block";
+  }
+
+  details.forEach(detail => {
+    detail.classList.remove("active");
+  });
+}
+
+function showProductDetail(detailId) {
+  const summary = document.getElementById("productsSummary");
+  const detail = document.getElementById(detailId);
+
+  showPageById("products");
+
+  if (summary) {
+    summary.style.display = "none";
+  }
+
+  document.querySelectorAll(".product-detail").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  if (detail) {
+    detail.classList.add("active");
+    detail.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function navigateProductSection(sectionId) {
+  closeProductDropdown();
+  showPageById("products");
+
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+const productOptionsByRequestType = {
+  "Product Purchase": [
+    "Model 10",
+    "Model 10/2",
+    "Model 20",
+    "Model 20/2",
+    "Model 200",
+    "Model 200/1",
+    "Model 200T",
+    "Model 210"
+  ],
+  "Rental": [
+    "Model 20 Oven Heated THC Analyzer",
+    "Model 20/2 Oven Heated Dual Channel THC Analyzer",
+    "Model 200 Methane / Non-Methane / THC Analyzer",
+    "Model 200/1 Methane / Non-Methane (NMHC) Hydrocarbon Analyzer",
+    "Model 200T Methane / Non-Methane / THC Analyzer",
+    "Model 210 Methane / Ethane / Non-Methane-Ethane (NMEHC) / THC Analyzer"
+  ],
+  "Components Purchase": [
+    "PTFE Isolated Burner (FID)",
+    "Custom Electronics",
+    "Custom Heated Sample Pumps",
+    "Dual-Stage Stainless Steel Sample Filter",
+    "Digital / Graphical Display",
+    "PTFE and Stainless Steel Tubing",
+    "Stainless Steel Solenoid Valves",
+    "Heated Oven",
+    "Column"
+  ]
+};
+
+const productLabelsByRequestType = {
+  "Product Purchase": "Product",
+  "Rental": "Rental Product",
+  "Components Purchase": "Component"
+};
+
+function getSelectedQuoteRequests() {
+  return Array.from(document.querySelectorAll(".quote-request-options input:checked"))
+    .map(input => input.value);
+}
+
+function getProductOptionsMarkup(quoteRequest) {
+  const options = productOptionsByRequestType[quoteRequest] || [];
+
+  return [
+    `<option value="" disabled selected>Select a ${productLabelsByRequestType[quoteRequest].toLowerCase()}</option>`,
+    ...options.map(option => `<option>${option}</option>`)
+  ].join("");
+}
+
+function getProductRowMarkup(quoteRequest, isAdditional = false) {
+  const label = productLabelsByRequestType[quoteRequest];
+  const amountLabel = quoteRequest === "Rental" ? "Weeks" : "Quantity";
+  const minAmount = "1";
+  const productName = isAdditional ? `Additional ${label}` : label;
+  const quantityName = isAdditional ? `Additional ${label} ${amountLabel}` : `${label} ${amountLabel}`;
+  const labelStart = `<label aria-label="${productName}">`;
+  const amountClass = isAdditional ? "amount-label has-remove" : "amount-label";
+  const removeButton = isAdditional
+    ? '<button type="button" class="remove-item-btn" onclick="removeProductRow(this)" aria-label="Remove item" title="Remove item">&#128465;&#65039;</button>'
+    : "";
+
+  return `
+    <div class="product-row">
+      ${labelStart}
+        <select class="product-select" name="${productName}" required>
+          ${getProductOptionsMarkup(quoteRequest)}
+        </select>
+      </label>
+
+      <div class="${amountClass}" aria-label="${quantityName}">
+        <input type="number" name="${quantityName}" min="${minAmount}" step="1" value="${minAmount}" inputmode="numeric" oninput="enforceIntegerInput(this)">
+        ${removeButton}
+      </div>
+    </div>
+  `;
+}
+
+function renderProductSections() {
+  const productList = document.getElementById("productList");
+
+  if (!productList) {
+    return;
+  }
+
+  const quoteRequests = getSelectedQuoteRequests()
+    .filter(quoteRequest => productOptionsByRequestType[quoteRequest]);
+
+  productList.innerHTML = quoteRequests.map(quoteRequest => {
+    const label = productLabelsByRequestType[quoteRequest];
+    const amountLabel = quoteRequest === "Rental" ? "Weeks" : "Quantity";
+
+    return `
+      <div class="product-choice-section" data-quote-request="${quoteRequest}">
+        <div class="product-choice-header">
+          <h3>${label}</h3>
+          <span>${amountLabel}</span>
+        </div>
+        ${getProductRowMarkup(quoteRequest)}
+        <button type="button" class="add-btn" onclick="addProduct('${quoteRequest}')">+ Add Another ${label}</button>
+      </div>
+    `;
+  }).join("");
+}
+
+function handleQuoteRequestChange() {
+  const quoteRequests = getSelectedQuoteRequests();
+  const quoteRequestValue = document.getElementById("quoteRequestValue");
+  const otherField = document.getElementById("otherQuoteRequestField");
+
+  if (quoteRequestValue) {
+    quoteRequestValue.value = quoteRequests.join(", ");
+  }
+
+  if (otherField) {
+    otherField.classList.toggle("active", quoteRequests.includes("Other"));
+  }
+
+  renderProductSections();
+}
+
+function validateQuoteRequest() {
+  if (getSelectedQuoteRequests().length) {
+    return true;
+  }
+
+  alert("Please select at least one quote request.");
+  return false;
+}
+
+function addProduct(quoteRequest) {
+  const section = document.querySelector(
+    `.product-choice-section[data-quote-request="${quoteRequest}"]`
+  );
+
+  if (!section) {
+    return;
+  }
+
+  const addButton = section.querySelector(".add-btn");
+  addButton.insertAdjacentHTML("beforebegin", getProductRowMarkup(quoteRequest, true));
+}
+
+function removeProductRow(button) {
+  const row = button.closest(".product-row");
+
+  if (row) {
+    row.remove();
+  }
+}
+
+function enforceIntegerInput(input) {
+  if (input.value === "") {
+    return;
+  }
+
+  const min = Number(input.min || 1);
+  const value = Math.floor(Number(input.value));
+
+  input.value = Number.isFinite(value) ? Math.max(value, min) : min;
+}
+
+handleQuoteRequestChange();
+</script>
+
+</body>
+</html>
