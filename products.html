@@ -27,29 +27,36 @@
       <a href="service.html">Service</a>
       <a href="rentals.html">Rentals</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html">Contact &amp; Quote <span class="quote-cart-badge" aria-label="Quote cart item count"></span></a>
     </nav>
   </header>
 </div>
 <section id="products" class="page">
   <div id="productsSummary">
+  <div class="product-toolbar">
+    <button class="product-expand-button" type="button" id="expandProductsButton"><span>+</span> Expand All</button>
+    <label class="product-search-label">
+      <span>Search Products</span>
+      <input type="search" id="productSearch" placeholder="Search products">
+    </label>
+  </div>
+
   <div id="fidAnalyzers" class="section-title">
     <h2>FID Hydrocarbon Analyzers</h2>
     <p>Flame ionization detector analyzers for total hydrocarbon and volatile organic compound measurement applications.</p>
   </div>
 
-  <div class="product-section">
-    <h3>Total Hydrocarbon Analyzers (THC)</h3>
+  <details id="thcAnalyzers" class="product-section product-accordion" data-nav-section="fidAnalyzers" data-product-section="thcAnalyzers" open>
+    <summary>Total Hydrocarbon Analyzers (THC)</summary>
     <div class="product-grid">
       <div class="product">
         <div class="product-img">
           <img src="model_10.png" alt="Model 10 FID total hydrocarbon analyzer" loading="lazy">
         </div>
         <div class="product-content">
-          <p class="product-category">THC Analyzer</p>
+          <p class="product-category">THC Analyzer <span>Standard or Custom</span></p>
           <h3><a class="product-name-link" href="model-10.html">Model 10</a></h3>
           <div class="product-specs">Single channel | Spot heated | THC</div>
-          <p>Microprocessor-based FID analyzer for continuous dry sample measurement at ambient temperature. The detector is spot heated to help prevent condensation and support repeatable performance.</p>
         </div>
       </div>
 
@@ -58,10 +65,9 @@
           <img src="model_10_2.png" alt="Model 10/2 FID dual channel total hydrocarbon analyzer" loading="lazy">
         </div>
         <div class="product-content">
-          <p class="product-category">THC Analyzer</p>
+          <p class="product-category">THC Analyzer <span>Standard or Custom</span></p>
           <h3><a class="product-name-link" href="model-10-2.html">Model 10/2</a></h3>
           <div class="product-specs">Dual channel | Spot heated | THC</div>
-          <p>Dual-channel version of the spot-heated FID analyzer, using two detectors for continuous measurement of two independent dry sample streams.</p>
         </div>
       </div>
 
@@ -70,10 +76,9 @@
           <img src="model_20.png" alt="Model 20 FID oven heated total hydrocarbon analyzer" loading="lazy">
         </div>
         <div class="product-content">
-          <p class="product-category">THC Analyzer</p>
+          <p class="product-category">THC Analyzer <span>Standard or Custom</span></p>
           <h3><a class="product-name-link" href="model-20.html">Model 20</a></h3>
           <div class="product-specs">Single channel | Oven heated | THC</div>
-          <p>Oven-heated FID analyzer designed to continuously measure one point. Sample-contact components are kept in a temperature-controlled oven to help prevent condensation.</p>
         </div>
       </div>
 
@@ -82,27 +87,25 @@
           <img src="model_20_2.png" alt="Model 20/2 FID dual channel oven heated total hydrocarbon analyzer" loading="lazy">
         </div>
         <div class="product-content">
-          <p class="product-category">THC Analyzer</p>
+          <p class="product-category">THC Analyzer <span>Standard or Custom</span></p>
           <h3><a class="product-name-link" href="model-20-2.html">Model 20/2</a></h3>
           <div class="product-specs">Dual channel | Oven heated | THC</div>
-          <p>Dual-point oven-heated FID analyzer with two detectors, sample filters, sample lines, valves, pump heads, and capillaries maintained in a heated oven.</p>
         </div>
       </div>
     </div>
-  </div>
+  </details>
 
-  <div class="product-section">
-    <h3>Volatile Organic Compound (VOC) Analyzers</h3>
+  <details id="vocAnalyzers" class="product-section product-accordion" data-nav-section="fidAnalyzers" data-product-section="vocAnalyzers" open>
+    <summary>Volatile Organic Compound Analyzers (VOC)</summary>
     <div class="product-grid">
       <div class="product">
         <div class="product-img">
           <img src="model_200.png" alt="Model 200 FID methane non-methane total hydrocarbon analyzer" loading="lazy">
         </div>
         <div class="product-content">
-          <p class="product-category">VOC Analyzer</p>
+          <p class="product-category">VOC Analyzer <span>Standard or Custom</span></p>
           <h3><a class="product-name-link" href="model-200.html">Model 200</a></h3>
-          <div class="product-specs">Dual channel | Oven heated | Methane / Non-methane / Total</div>
-          <p>FID NMHC analyzer using one detector for real-time total hydrocarbons and a second detector with a GC column to separate methane and non-methane components.</p>
+          <div class="product-specs">Dual channel | Oven heated | Methane / Non-methane</div>
         </div>
       </div>
 
@@ -111,10 +114,9 @@
           <img src="model_200_1.png" alt="Model 200/1 FID methane non-methane hydrocarbon analyzer" loading="lazy">
         </div>
         <div class="product-content">
-          <p class="product-category">VOC Analyzer</p>
+          <p class="product-category">VOC Analyzer <span>Standard or Custom</span></p>
           <h3><a class="product-name-link" href="model-200-1.html">Model 200/1</a></h3>
-          <div class="product-specs">Single FID | Oven heated | Methane / Non-methane</div>
-          <p>Methane/non-methane hydrocarbon analyzer that measures at preset intervals, using a GC column and one FID to separate and read methane and non-methane components.</p>
+          <div class="product-specs">Single channel | Oven heated | Methane / Non-methane</div>
         </div>
       </div>
 
@@ -123,10 +125,9 @@
           <img src="model_200t.png" alt="Model 200T FID methane non-methane total hydrocarbon analyzer" loading="lazy">
         </div>
         <div class="product-content">
-          <p class="product-category">VOC Analyzer</p>
+          <p class="product-category">VOC Analyzer <span>Standard or Custom</span></p>
           <h3><a class="product-name-link" href="model-200t.html">Model 200T</a></h3>
-          <div class="product-specs">Oven heated | Methane / Non-methane / Total</div>
-          <p>FID NMHC analyzer configured for methane, non-methane, and total hydrocarbon measurement in oven-heated applications.</p>
+          <div class="product-specs">Dual channel | Oven heated | Methane / Ethane / MNEHC / THC</div>
         </div>
       </div>
 
@@ -135,20 +136,21 @@
           <img src="model_210.png" alt="Model 210 FID methane ethane NMEHC total hydrocarbon analyzer" loading="lazy">
         </div>
         <div class="product-content">
-          <p class="product-category">VOC Analyzer</p>
+          <p class="product-category">VOC Analyzer <span>Standard or Custom</span></p>
           <h3><a class="product-name-link" href="model-210.html">Model 210</a></h3>
-          <div class="product-specs">Dual FID | Oven heated | Methane / Ethane / NMEHC / Total</div>
-          <p>Oven-heated analyzer for methane, ethane, non-methane-ethane hydrocarbons, and total hydrocarbons. One FID supports speciated readings while the second continuously measures total hydrocarbons.</p>
+          <div class="product-specs">Dual channel | Oven heated | Methane / Ethane / MNEHC / THC</div>
         </div>
       </div>
     </div>
+  </details>
+
+  <div id="cemsProducts" class="section-title product-section">
+    <h2>Continuous Emission Monitoring Systems (CEMS)</h2>
+    <p>Integrated emissions monitoring systems built around analyzer, control, data, and support equipment for continuous measurement applications.</p>
   </div>
 
-  <div id="cemsProducts" class="product-section">
-    <div class="section-title">
-      <h2>Continuous Emission Monitoring Systems (CEMS)</h2>
-      <p>Integrated emissions monitoring systems built around analyzer, control, data, and support equipment for continuous measurement applications.</p>
-    </div>
+  <details class="product-section product-accordion" data-nav-section="cemsProducts">
+    <summary>Custom Solutions</summary>
     <div class="cards">
       <div class="card">
         <h3>Custom Integrated Systems</h3>
@@ -177,57 +179,79 @@
         </p>
       </div>
     </div>
+  </details>
+
+  <div id="componentsParts" class="section-title product-section">
+    <h2>Components</h2>
+    <p>Components listed by VIG for analyzer, sample system, and emissions monitoring equipment support.</p>
   </div>
 
-  <div id="componentsParts" class="product-section">
-    <div class="section-title">
-      <h2>Components</h2>
-      <p>Components listed by VIG for analyzer, sample system, and emissions monitoring equipment support.</p>
-    </div>
+  <details class="product-section product-accordion" data-nav-section="componentsParts">
+    <summary>Analyzer Parts</summary>
     <div class="cards">
       <div class="card">
         <h3><a class="product-name-link" href="ptfe-burner.html">PTFE Isolated Burner (FID)</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('PTFE Isolated Burner (FID)', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
 
       <div class="card">
         <h3><a class="product-name-link" href="custom-electronics.html">Custom Electronics</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('Custom Electronics', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
 
       <div class="card">
         <h3><a class="product-name-link" href="heated-sample-pumps.html">Custom Heated Sample Pumps</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('Custom Heated Sample Pumps', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
 
       <div class="card">
         <h3><a class="product-name-link" href="sample-filter.html">Dual-Stage Stainless Steel Sample Filter</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('Dual-Stage Stainless Steel Sample Filter', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
 
       <div class="card">
         <h3><a class="product-name-link" href="display.html">Digital / Graphical Display</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('Digital / Graphical Display', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
 
       <div class="card">
         <h3><a class="product-name-link" href="tubing.html">PTFE and Stainless Steel Tubing</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('PTFE and Stainless Steel Tubing', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
 
       <div class="card">
         <h3><a class="product-name-link" href="solenoid-valves.html">Stainless Steel Solenoid Valves</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('Stainless Steel Solenoid Valves', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
 
       <div class="card">
         <h3><a class="product-name-link" href="heated-oven.html">Heated Oven</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('Heated Oven', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
 
       <div class="card">
         <h3><a class="product-name-link" href="column.html">Column</a></h3>
+        <button class="method-button quote-card-button" type="button" onclick="addComponentToQuote('Column', this)">Add to Quote</button>
+        <span class="quote-confirmation" aria-live="polite"></span>
       </div>
     </div>
+  </details>
+
+  <div id="peripherals" class="section-title product-section">
+    <h2>Peripherals</h2>
+    <p>Peripheral devices listed by VIG for analyzer operation, sample handling, sequencing, and data recording.</p>
   </div>
 
-  <div id="peripherals" class="product-section">
-    <div class="section-title">
-      <h2>Peripherals</h2>
-      <p>Peripheral devices listed by VIG for analyzer operation, sample handling, sequencing, and data recording.</p>
-    </div>
+  <details class="product-section product-accordion" data-nav-section="peripherals">
+    <summary>Analyzer Operation Devices</summary>
     <div class="cards">
       <div class="card">
         <h3><a class="product-name-link" href="air-generators.html">Combustion Air Generators / Zero Air Generators</a></h3>
@@ -253,7 +277,7 @@
         <h3><a class="product-name-link" href="temperature-controllers.html">Temperature Controllers and Heated Sample Lines</a></h3>
       </div>
     </div>
-  </div>
+  </details>
   </div>
 
 </section>
@@ -280,7 +304,14 @@
   </div>
 </footer>
 
+<script src="site.js"></script>
 </body>
 </html>
+
+
+
+
+
+
 
 

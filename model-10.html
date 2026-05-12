@@ -27,18 +27,26 @@
       <a href="service.html">Service</a>
       <a href="rentals.html">Rentals</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html">Contact &amp; Quote <span class="quote-cart-badge" aria-label="Quote cart item count"></span></a>
     </nav>
   </header>
 </div>
 <section class="page">
 <div id="model10Detail" class="product-detail active">
-    <a class="back-button" href="products.html">&#8592; Back to Product</a>
+    <a class="back-button" href="products.html#thcAnalyzers">&#8592; Back to THC Analyzer</a>
     <article class="method-paper">
       <div class="product-detail-grid">
         <div class="product-detail-media">
           <div class="product-detail-img">
             <img src="model_10.png" alt="Model 10 FID total hydrocarbon analyzer">
+          </div>
+          <div class="product-data-actions">
+            <ul class="resource-list">
+              <li><a class="resource-link" href="#">3D Model - Model 10</a></li>
+              <li><a class="resource-link" href="model_10_datasheet.pdf" download>Datasheet - Model 10</a></li>
+              <li><a class="resource-link" href="#">2D Drawing - Model 10</a></li>
+              <li><a class="resource-link" href="#">RoHS Certificate</a></li>
+            </ul>
           </div>
         </div>
         <div>
@@ -47,28 +55,34 @@
           <p class="product-detail-spec">FID Single Channel, Spot Heated Total Hydrocarbon Analyzer</p>
           <p>The Model 10 is a microprocessor-based, spot-heated total hydrocarbon gas analyzer designed for accurate, sensitive, and stable measurement.</p>
           <p>It uses a flame ionization detector for continuous measurement of a dry sample stream at ambient temperature. The detector is spot heated to help prevent condensation and support repeatable performance across a broad range of hydrocarbon concentrations in gaseous mixtures or ambient air.</p>
-          <p class="method-note"><strong>Best fit:</strong> Single-point total hydrocarbon measurement where the sample stream is dry and ambient-temperature operation is appropriate.</p>
+          <div class="product-options-panel">
+            <h4>Options</h4>
+            <div class="model-configuration-list">
+              <label><input type="radio" name="model10Configuration" value="standard" checked onchange="toggleModel10ProductOptions()"> Standard</label>
+              <label><input type="radio" name="model10Configuration" value="custom" onchange="toggleModel10ProductOptions()"> Custom</label>
+            </div>
+            <div class="custom-model-options">
+              <div class="model-options-list">
+                <label><input type="checkbox" value="Automatic calibration"> Automatic calibration</label>
+                <label><input type="checkbox" value="Zero and calibration solenoids with software"> Zero and calibration solenoids with software</label>
+                <label><input type="checkbox" value="RS-232 interface"> RS-232 interface</label>
+                <label><input type="checkbox" value="Second concentration level alarm"> Second concentration level alarm</label>
+                <label><input type="checkbox" value="Internal combustion air supply"> Internal combustion air supply</label>
+                <label><input type="checkbox" value="Purge and internal cleaning system"> Purge and internal cleaning system</label>
+                <label><input type="checkbox" value="Dilution system"> Dilution system</label>
+                <label><input type="checkbox" value="User selectable fuel (H2 or H2/He mixture)"> User selectable fuel (H2 or H2/He mixture)</label>
+                <label><input type="checkbox" value="Range recognition relays"> Range recognition relays</label>
+                <label><input type="checkbox" value="Multi-point sequencer"> Multi-point sequencer</label>
+                <label><input type="checkbox" value="Sample shut-off"> Sample shut-off</label>
+              </div>
+            </div>
+          </div>
+          <div class="method-actions product-quote-actions">
+            <button class="method-button" type="button" onclick="addModel10ToQuote()">Add to Quote</button>
+            <span class="quote-confirmation" aria-live="polite"></span>
+          </div>
         </div>
       </div>
-
-      <details class="collapsible-section product-data-actions" open>
-        <summary>Resources & Downloads</summary>
-        <ul class="resource-list"><li>
-                <span class="resource-label">3D Model</span>
-                <a class="resource-link" href="#">3D STEP File</a>
-              </li>
-              <li>
-                <span class="resource-label">2D Drawing</span>
-                <a class="resource-link" href="#">Model 10 Drawing</a>
-              </li><li>
-                <span class="resource-label">Datasheet</span>
-                <a class="resource-link" href="model_10_datasheet.pdf" download>Model 10 Product Datasheet</a>
-              </li>
-              <li>
-                <span class="resource-label">Other</span>
-                <a class="resource-link" href="#">RoHS Certificate</a>
-              </li></ul>
-      </details>
 
       <details class="collapsible-section spec-toggle" open>
         <summary>Standard Specifications</summary>
@@ -220,7 +234,13 @@
     </div>
   </div>
 </footer>
+<script src="site.js"></script>
 
 </body>
 </html>
+
+
+
+
+
 
