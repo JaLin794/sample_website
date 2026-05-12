@@ -1,4 +1,9 @@
 ﻿const productOptionsByRequestType = {
+  "Service": [
+    "Calibration",
+    "Maintenance",
+    "Repair"
+  ],
   "Product Purchase": [
     "Model 10",
     "Model 10/2",
@@ -39,6 +44,7 @@
 };
 
 const productLabelsByRequestType = {
+  "Service": "Service Option",
   "Product Purchase": "Product",
   "Rental": "Rental Product",
   "Components Purchase": "Component",
@@ -115,7 +121,6 @@ function getModelOptionsMarkup(productName, rowId) {
 
   return `
     <div class="model-options-section" style="display: none;">
-      <h4>Model 10 Options</h4>
       <div class="model-configuration-list">
         <label>
           <input type="radio" name="${configurationTypeName}" value="standard" checked onchange="handleModelConfigurationChange(this)">
@@ -124,6 +129,10 @@ function getModelOptionsMarkup(productName, rowId) {
         <label>
           <input type="radio" name="${configurationTypeName}" value="custom" onchange="handleModelConfigurationChange(this)">
           Custom
+        </label>
+        <label>
+          <input type="checkbox" class="trade-in-option" name="${productName} Trade-In" value="trade-in" onchange="handleModelConfigurationChange(this)">
+          Trade-In
         </label>
       </div>
       <div class="custom-model-options">
@@ -164,7 +173,7 @@ function getRenderedQuoteCart() {
   return Array.from(productList.querySelectorAll(".product-choice-section")).flatMap(section => {
     const quoteRequest = section.dataset.quoteRequest;
 
-    if (!quoteCartCountRequestTypes.includes(quoteRequest)) {
+    if (!productOptionsByRequestType[quoteRequest]) {
       return [];
     }
 
@@ -177,15 +186,16 @@ function getRenderedQuoteCart() {
       }
 
       const isModel10 = select.value === "Model 10";
-      const isCustomModel10 = Boolean(row.querySelector(".model-options-section input[value='custom']:checked"));
-      const options = isModel10 && isCustomModel10
-        ? Array.from(row.querySelectorAll(".model-options-section input[type='checkbox']:checked")).map(input => input.value)
+      const selectedModel10Configuration = row.querySelector(".model-options-section .model-configuration-list input[type='radio']:checked")?.value || "standard";
+      const includesTradeIn = Boolean(row.querySelector(".model-options-section .trade-in-option:checked"));
+      const options = isModel10 && selectedModel10Configuration === "custom"
+        ? Array.from(row.querySelectorAll(".model-options-section .model-options-list input[type='checkbox']:checked")).map(input => input.value)
         : [];
       const amount = Number(amountInput && amountInput.value ? amountInput.value : 1);
 
       return {
         amount: Number.isFinite(amount) ? Math.max(amount, 1) : 1,
-        configurationType: isModel10 ? (isCustomModel10 ? "custom" : "standard") : "",
+        configurationType: isModel10 ? `${selectedModel10Configuration}${includesTradeIn ? "+trade-in" : ""}` : "",
         itemName: select.value,
         options,
         quoteRequest
@@ -295,6 +305,21 @@ function addComponentToQuote(componentName, button) {
   showAddToQuoteConfirmation(button);
 }
 
+function addPeripheralToQuote(peripheralName, button) {
+  addItemToQuote("Peripheral Purchase", peripheralName);
+  showAddToQuoteConfirmation(button);
+}
+
+function addServiceToQuote(serviceName, button) {
+  addItemToQuote("Service", serviceName);
+  showAddToQuoteConfirmation(button);
+}
+
+function addSupportToQuote(supportName, button) {
+  addItemToQuote("Technical Support", supportName);
+  showAddToQuoteConfirmation(button);
+}
+
 function showAddToQuoteConfirmation(source) {
   const container = source ? source.closest(".card, .product-quote-actions") : document;
   const message = container ? container.querySelector(".quote-confirmation") : null;
@@ -348,24 +373,34 @@ function setProductRowValues(row, item) {
 
   if (
     item.itemName === "Model 10 - Custom" ||
-    item.configurationType === "custom" ||
+    (item.configurationType || "").includes("custom") ||
+    (item.configurationType || "").includes("trade-in") ||
     (item.itemName === "Model 10" && item.options && item.options.length)
   ) {
     const itemOptions = item.options || [];
-    const customInput = row.querySelector('.model-options-section input[value="custom"]');
+    const hasTradeIn = (item.configurationType || "").includes("trade-in");
+    const configurationValue = (item.configurationType || "").includes("custom") || itemOptions.length ? "custom" : "standard";
+    const customInput = row.querySelector(`.model-options-section input[type="radio"][value="${configurationValue}"]`);
+    const tradeInInput = row.querySelector(".model-options-section .trade-in-option");
 
     if (customInput) {
       customInput.checked = true;
       handleModelConfigurationChange(customInput);
     }
 
-    row.querySelectorAll(".model-options-section input[type='checkbox']").forEach(input => {
+    if (tradeInInput) {
+      tradeInInput.checked = hasTradeIn;
+    }
+
+    row.querySelectorAll(".model-options-section .model-options-list input[type='checkbox']").forEach(input => {
       input.checked = itemOptions.includes(input.value);
     });
 
     const firstOption = row.querySelector(".model-options-section input[type='checkbox']");
     if (firstOption) {
       updateModelOptionsConfiguration(firstOption);
+    } else {
+      updateModelOptionsConfiguration(row.querySelector(".model-options-section"));
     }
   }
 }
@@ -498,23 +533,25 @@ function updateModelOptionsConfiguration(source) {
     return;
   }
 
-  const selectedOptions = Array.from(section.querySelectorAll("input[type='checkbox']:checked"))
+  const selectedOptions = Array.from(section.querySelectorAll(".model-options-list input[type='checkbox']:checked"))
     .map(input => input.value);
   const isCustom = section.querySelector('input[value="custom"]:checked');
+  const isTradeIn = section.querySelector(".trade-in-option:checked");
   const customOptions = section.querySelector(".custom-model-options");
   const configuration = section.querySelector(".model-options-configuration");
-  const value = isCustom
+  const baseValue = isCustom
     ? selectedOptions.length
       ? `Model 10 - Custom with options: ${selectedOptions.join(", ")}`
       : "Model 10 - Custom"
     : "Model 10 - Standard";
+  const value = isTradeIn ? `${baseValue} + Trade-In` : baseValue;
 
   if (customOptions) {
     customOptions.classList.toggle("active", Boolean(isCustom));
   }
 
   if (!isCustom) {
-    section.querySelectorAll("input[type='checkbox']").forEach(input => {
+    section.querySelectorAll(".model-options-list input[type='checkbox']").forEach(input => {
       input.checked = false;
     });
   }

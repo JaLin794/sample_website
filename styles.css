@@ -965,10 +965,30 @@ nav button.active {
   border-color: #cfeaf7;
   border-top: 5px solid #2a8fbd;
   box-shadow: 0 16px 38px rgba(42,143,189,.12);
+  display: flex;
+  flex-direction: column;
 }
 
 .service-panel .card h3 {
   color: #08739f;
+  text-align: center;
+}
+
+.service-panel .quote-card-button,
+.service-panel .service-card-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: fit-content;
+}
+
+.service-panel .quote-card-button {
+  margin-top: auto;
+}
+
+.service-panel .service-card-button {
+  margin-top: auto;
 }
 
 .about-list {
