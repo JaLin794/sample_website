@@ -33,24 +33,24 @@
 </div>
 <section id="products" class="page">
   <div id="productsSummary">
-  <div class="product-toolbar">
-    <label class="product-search-label">
-      <span>Search Products</span>
-      <input type="search" id="productSearch" placeholder="Search products">
-    </label>
-  </div>
-
   <div class="products-layout">
-    <aside class="product-type-sidebar" aria-label="Product types">
-      <nav>
-        <a href="#fidAnalyzers">FID Analyzer</a>
-        <a class="product-type-subitem" href="#thcAnalyzers">Total Hydrocarbon</a>
-        <a class="product-type-subitem" href="#vocAnalyzers">Volatile Organic Compound</a>
-        <a href="#cemsProducts">CEMS</a>
-        <a href="#componentsParts">Components</a>
-        <a class="product-type-subitem" href="#componentsParts">Analyzer Parts</a>
-        <a href="#peripherals">Peripherals</a>
-        <a class="product-type-subitem" href="#peripherals">Analyzer Devices</a>
+    <aside class="product-side-rail" aria-label="Product navigation">
+      <div class="product-toolbar">
+        <label class="product-search-label">
+          <span>Search Products</span>
+          <input type="search" id="productSearch" placeholder="Search products">
+        </label>
+      </div>
+
+      <nav class="product-type-sidebar" aria-label="Product types">
+        <a href="#fidAnalyzers" data-product-nav="fidAnalyzers">FID Analyzer</a>
+        <a class="product-type-subitem" href="#thcAnalyzers" data-product-nav="thcAnalyzers">Total Hydrocarbon</a>
+        <a class="product-type-subitem" href="#vocAnalyzers" data-product-nav="vocAnalyzers">Volatile Organic Compound</a>
+        <a href="#cemsProducts" data-product-nav="cemsProducts">CEMS</a>
+        <a href="#componentsParts" data-product-nav="componentsParts">Components</a>
+        <a class="product-type-subitem" href="#componentsParts" data-product-nav="componentsParts">Analyzer Parts</a>
+        <a href="#peripherals" data-product-nav="peripherals">Peripherals</a>
+        <a class="product-type-subitem" href="#peripherals" data-product-nav="peripherals">Analyzer Devices</a>
       </nav>
     </aside>
 

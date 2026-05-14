@@ -543,7 +543,18 @@ function handleQuoteRequestChange() {
   }
 
   if (otherField) {
-    otherField.classList.toggle("active", quoteRequests.includes("Other"));
+    const isOtherSelected = quoteRequests.includes("Other");
+    const otherInput = otherField.querySelector("input");
+
+    otherField.classList.toggle("active", isOtherSelected);
+
+    if (otherInput) {
+      otherInput.disabled = !isOtherSelected;
+
+      if (!isOtherSelected) {
+        otherInput.value = "";
+      }
+    }
   }
 
   renderProductSections();
@@ -762,6 +773,34 @@ function filterProducts() {
 
     group.classList.toggle("product-filter-hidden", query && !matchingCards.length);
   });
+
+  updateProductNavState();
+}
+
+function updateProductNavState() {
+  const navLinks = Array.from(document.querySelectorAll("[data-product-nav]"));
+
+  if (!navLinks.length) {
+    return;
+  }
+
+  const targets = [...new Set(navLinks.map(link => link.dataset.productNav))]
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  const activationLine = 150;
+  const activeTarget = targets.reduce((current, target) => {
+    const targetTop = target.getBoundingClientRect().top;
+
+    if (targetTop <= activationLine) {
+      return target;
+    }
+
+    return current;
+  }, targets[0]);
+
+  navLinks.forEach(link => {
+    link.classList.toggle("active", link.dataset.productNav === activeTarget.id);
+  });
 }
 
 function initializeProductControls() {
@@ -769,6 +808,13 @@ function initializeProductControls() {
 
   if (search) {
     search.addEventListener("input", filterProducts);
+  }
+
+  if (document.querySelector("[data-product-nav]")) {
+    window.addEventListener("scroll", updateProductNavState, { passive: true });
+    window.addEventListener("resize", updateProductNavState);
+    window.addEventListener("hashchange", updateProductNavState);
+    updateProductNavState();
   }
 }
 
