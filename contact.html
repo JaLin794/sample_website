@@ -44,6 +44,16 @@
     </label>
 
     <label>
+      Company
+      <input type="text" name="Company" placeholder="Company name">
+    </label>
+
+    <label>
+      Address
+      <input type="text" name="Shipping Address" placeholder="Shipping address">
+    </label>
+
+    <label>
       Email *
       <input type="email" name="Email" required>
     </label>
@@ -54,8 +64,8 @@
     </label>
 
     <div class="quote-request-group">
-      <span class="form-label">Quote Request *</span>
-      <input type="hidden" id="quoteRequestValue" name="Quote Request" required>
+      <span class="form-label">Request *</span>
+      <input type="hidden" id="quoteRequestValue" name="Request" required>
       <div class="quote-request-options">
         <label>
           <input type="checkbox" value="Service" onchange="handleQuoteRequestChange()">
@@ -97,15 +107,17 @@
     </div>
 
     <label id="otherQuoteRequestField" class="conditional-field">
-      Other Quote Request
-      <input type="text" name="Other Quote Request" placeholder="Tell us what the request is about">
+      Other Request
+      <input type="text" name="Other Request" placeholder="Tell us what the request is about">
     </label>
+
+    <div id="supportAnalyzerList"></div>
 
     <div id="productList"></div>
 
     <label>
-      Comments / Custom Modifications
-      <textarea name="Comments" rows="5" placeholder="Describe your application, method requirement, gases measured, sample conditions, timeline, or service needs."></textarea>
+      Comments / Custom Modifications / Request Details
+      <textarea name="Comments" rows="5" placeholder="Describe details related to general information, technical support, custom modifications, application, method requirement, gases measured, sample conditions, timeline, or service needs."></textarea>
     </label>
 
     <button class="submit" type="submit">Submit Request</button>

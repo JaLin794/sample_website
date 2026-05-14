@@ -51,7 +51,19 @@ const productLabelsByRequestType = {
   "Peripheral Purchase": "Peripheral"
 };
 
+const supportAnalyzerOptions = [
+  "Model 10",
+  "Model 10/2",
+  "Model 20",
+  "Model 20/2",
+  "Model 200",
+  "Model 200/1",
+  "Model 200T",
+  "Model 210"
+];
+
 const quoteCartStorageKey = "vigQuoteCart";
+const selectedQuoteRequestsStorageKey = "vigSelectedQuoteRequests";
 const quoteCartCountRequestTypes = [
   "Product Purchase",
   "Components Purchase",
@@ -161,6 +173,19 @@ function getStoredQuoteCart() {
 function saveStoredQuoteCart(cart) {
   localStorage.setItem(quoteCartStorageKey, JSON.stringify(cart));
   updateQuoteCartBadge();
+}
+
+function getStoredSelectedQuoteRequests() {
+  try {
+    const storedRequests = JSON.parse(localStorage.getItem(selectedQuoteRequestsStorageKey)) || [];
+    return Array.isArray(storedRequests) ? storedRequests : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveSelectedQuoteRequests(quoteRequests) {
+  localStorage.setItem(selectedQuoteRequestsStorageKey, JSON.stringify(quoteRequests));
 }
 
 function getRenderedQuoteCart() {
@@ -480,10 +505,38 @@ function renderProductSections() {
   }).join("");
 }
 
+function renderSupportAnalyzerSection(selectedModel = "") {
+  const supportAnalyzerList = document.getElementById("supportAnalyzerList");
+
+  if (!supportAnalyzerList) {
+    return;
+  }
+
+  const isTechnicalSupport = getSelectedQuoteRequests().includes("Technical Support");
+
+  supportAnalyzerList.innerHTML = isTechnicalSupport
+    ? `
+      <div class="support-analyzer-section">
+        <label>
+          Technical Support Analyzer Model
+          <select class="support-analyzer-select" name="Technical Support Analyzer Model">
+            <option value="" disabled${selectedModel ? "" : " selected"}>Select an analyzer model</option>
+          ${supportAnalyzerOptions.map(option => `
+            <option value="${option}"${selectedModel === option ? " selected" : ""}>${option}</option>
+          `).join("")}
+          </select>
+        </label>
+      </div>
+    `
+    : "";
+}
+
 function handleQuoteRequestChange() {
+  const quoteRequestOptions = document.querySelector(".quote-request-options");
   const quoteRequests = getSelectedQuoteRequests();
   const quoteRequestValue = document.getElementById("quoteRequestValue");
   const otherField = document.getElementById("otherQuoteRequestField");
+  const selectedSupportAnalyzer = document.querySelector(".support-analyzer-select")?.value || "";
 
   if (quoteRequestValue) {
     quoteRequestValue.value = quoteRequests.join(", ");
@@ -494,7 +547,51 @@ function handleQuoteRequestChange() {
   }
 
   renderProductSections();
+  renderSupportAnalyzerSection(selectedSupportAnalyzer);
+  if (quoteRequestOptions) {
+    saveSelectedQuoteRequests(quoteRequests);
+  }
   saveRenderedQuoteCart();
+}
+
+function applyRequestFromUrl() {
+  if (!document.querySelector(".quote-request-options")) {
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const requestedType = params.get("request");
+  const supportModel = params.get("supportModel");
+
+  if (requestedType) {
+    document.querySelectorAll(".quote-request-options input").forEach(input => {
+      if (input.value === requestedType) {
+        input.checked = true;
+      }
+    });
+  }
+
+  handleQuoteRequestChange();
+
+  if (supportModel) {
+    const matchingModel = document.querySelector(".support-analyzer-select");
+
+    if (matchingModel && supportAnalyzerOptions.includes(supportModel)) {
+      matchingModel.value = supportModel;
+    }
+  }
+}
+
+function loadStoredSelectedQuoteRequests() {
+  const storedRequests = getStoredSelectedQuoteRequests();
+
+  if (!storedRequests.length) {
+    return;
+  }
+
+  document.querySelectorAll(".quote-request-options input").forEach(input => {
+    input.checked = input.checked || storedRequests.includes(input.value);
+  });
 }
 
 function handleProductSelectionChange(select) {
@@ -566,7 +663,7 @@ function validateQuoteRequest() {
     return true;
   }
 
-  alert("Please select at least one quote request.");
+  alert("Please select at least one request.");
   return false;
 }
 
@@ -642,54 +739,8 @@ function enforceIntegerInput(input) {
   input.value = Number.isFinite(value) ? Math.max(value, min) : min;
 }
 
-function getProductAccordions() {
-  return Array.from(document.querySelectorAll(".product-accordion"));
-}
-
-function setProductsExpanded(expanded) {
-  getProductAccordions().forEach(accordion => {
-    accordion.open = expanded;
-  });
-}
-
-function updateExpandProductsButton() {
-  const button = document.getElementById("expandProductsButton");
-
-  if (!button) {
-    return;
-  }
-
-  const accordions = getProductAccordions();
-  const allExpanded = accordions.length > 0 && accordions.every(accordion => accordion.open);
-
-  button.innerHTML = allExpanded ? "<span>-</span> Collapse All" : "<span>+</span> Expand All";
-}
-
-function expandProductsForHash() {
-  const hash = window.location.hash.replace("#", "");
-
-  if (!hash) {
-    return;
-  }
-
-  const matchingAccordions = getProductAccordions().filter(accordion =>
-    accordion.dataset.navSection === hash ||
-    accordion.dataset.productSection === hash
-  );
-
-  if (!matchingAccordions.length) {
-    return;
-  }
-
-  getProductAccordions().forEach(accordion => {
-    accordion.open = matchingAccordions.includes(accordion);
-  });
-
-  updateExpandProductsButton();
-}
-
-function getProductSearchCards(accordion) {
-  return Array.from(accordion.querySelectorAll(".product, .card"));
+function getProductGroups() {
+  return Array.from(document.querySelectorAll(".product-group"));
 }
 
 function filterProducts() {
@@ -701,53 +752,29 @@ function filterProducts() {
 
   const query = search.value.trim().toLowerCase();
 
-  getProductAccordions().forEach(accordion => {
-    const cards = getProductSearchCards(accordion);
+  getProductGroups().forEach(group => {
+    const cards = Array.from(group.querySelectorAll(".product, .card"));
     const matchingCards = cards.filter(card => {
       const isMatch = !query || card.textContent.toLowerCase().includes(query);
       card.classList.toggle("product-filter-hidden", !isMatch);
       return isMatch;
     });
 
-    accordion.classList.toggle("product-filter-hidden", query && !matchingCards.length);
-
-    if (query && matchingCards.length) {
-      accordion.open = true;
-    }
+    group.classList.toggle("product-filter-hidden", query && !matchingCards.length);
   });
-
-  updateExpandProductsButton();
 }
 
 function initializeProductControls() {
-  const button = document.getElementById("expandProductsButton");
   const search = document.getElementById("productSearch");
-
-  if (button) {
-    button.addEventListener("click", () => {
-      const accordions = getProductAccordions();
-      const shouldExpand = accordions.some(accordion => !accordion.open);
-
-      setProductsExpanded(shouldExpand);
-      updateExpandProductsButton();
-    });
-  }
 
   if (search) {
     search.addEventListener("input", filterProducts);
   }
-
-  getProductAccordions().forEach(accordion => {
-    accordion.addEventListener("toggle", updateExpandProductsButton);
-  });
-
-  window.addEventListener("hashchange", expandProductsForHash);
-  expandProductsForHash();
-  updateExpandProductsButton();
 }
 
-handleQuoteRequestChange();
 loadStoredQuoteCart();
+loadStoredSelectedQuoteRequests();
+applyRequestFromUrl();
 updateQuoteCartBadge();
 initializeProductControls();
 

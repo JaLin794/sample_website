@@ -515,13 +515,13 @@ nav button.active {
   padding: 9px 12px;
 }
 
-.product-accordion .cards .card {
+.product-group .cards .card {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
-.product-accordion .quote-confirmation {
+.product-group .quote-confirmation {
   align-self: center;
   margin-top: 8px;
 }
@@ -763,7 +763,7 @@ nav button.active {
   align-items: stretch;
 }
 
-.product-accordion .cards {
+.product-group .cards {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
@@ -776,34 +776,6 @@ nav button.active {
   width: 100%;
 }
 
-.product-expand-button {
-  align-items: center;
-  background: transparent;
-  border: none;
-  color: #0b4f8a;
-  cursor: pointer;
-  display: inline-flex;
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 800;
-  gap: 10px;
-  padding: 0;
-}
-
-.product-expand-button span {
-  color: #172033;
-  display: inline-block;
-  font-size: 1.35rem;
-  line-height: 1;
-  min-width: 18px;
-  text-align: left;
-}
-
-.product-expand-button:hover,
-.product-expand-button:focus-visible {
-  color: #ff8f00;
-}
-
 .product-search-label {
   color: #172033;
   font-size: .9rem;
@@ -813,12 +785,64 @@ nav button.active {
   width: 100%;
 }
 
+@media (min-width: 901px) {
+  .product-toolbar,
+  .products-layout {
+    margin-left: -32px;
+    width: calc(100% + 32px);
+  }
+}
+
 .product-search-label span {
   display: block;
 }
 
 .product-search-label input {
   margin-top: 6px;
+}
+
+.products-layout {
+  align-items: start;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 320px minmax(0, 1fr);
+}
+
+.product-type-sidebar {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(20,40,70,.08);
+  overflow-wrap: anywhere;
+  padding: 18px;
+  position: sticky;
+  top: 98px;
+  width: 320px;
+}
+
+.product-type-sidebar nav {
+  display: grid;
+  gap: 8px;
+}
+
+.product-type-sidebar a {
+  color: #0b4f8a;
+  font-weight: 800;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.product-type-sidebar a:hover,
+.product-type-sidebar a:focus-visible {
+  color: #ff8f00;
+  text-decoration: underline;
+}
+
+.product-type-sidebar .product-type-subitem {
+  color: #667085;
+  font-size: .92rem;
+  font-weight: 700;
+  padding-left: 16px;
 }
 
 .product-filter-hidden {
@@ -902,43 +926,6 @@ nav button.active {
   margin: 0 0 18px;
 }
 
-.product-accordion summary {
-  align-items: center;
-  color: #0b4f8a;
-  cursor: pointer;
-  display: flex;
-  font-size: 1.7rem;
-  font-weight: 800;
-  gap: 10px;
-  list-style: none;
-  margin: 0;
-}
-
-.product-accordion summary::-webkit-details-marker {
-  display: none;
-}
-
-.product-accordion summary::before {
-  color: #172033;
-  content: "+";
-  font-size: 1.35rem;
-  line-height: 1;
-  min-width: 18px;
-}
-
-.product-accordion[open] summary {
-  margin-bottom: 14px;
-}
-
-.product-accordion[open] summary::before {
-  content: "-";
-}
-
-.product-accordion-intro p {
-  color: #667085;
-  margin: 0 0 18px 28px;
-}
-
 #service {
   background:
     linear-gradient(180deg, #ffffff 0%, #f2fbff 58%, #ffffff 100%);
@@ -971,14 +958,22 @@ nav button.active {
 
 .service-panel .card h3 {
   color: #08739f;
+  min-height: 48px;
   text-align: center;
+}
+
+.service-panel .card p,
+.service-panel .card ul {
+  margin-top: 0;
 }
 
 .service-panel .quote-card-button,
 .service-panel .service-card-button {
   display: block;
+  font-size: .82rem;
   margin-left: auto;
   margin-right: auto;
+  padding: 9px 12px;
   text-align: center;
   width: fit-content;
 }
@@ -1095,6 +1090,18 @@ input, select, textarea {
 .quote-request-options input {
   margin-top: 0;
   width: auto;
+}
+
+.support-analyzer-section {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 10px;
+  margin: 8px 0 18px;
+  padding: 14px;
+}
+
+.support-analyzer-section label {
+  margin-bottom: 0;
 }
 
 .product-row {
@@ -1388,6 +1395,15 @@ footer strong {
 
   .product-search-label {
     max-width: none;
+  }
+
+  .products-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .product-type-sidebar {
+    position: static;
+    width: 100%;
   }
 
   .product-grid,
