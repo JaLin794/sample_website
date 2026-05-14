@@ -444,7 +444,7 @@ function loadStoredQuoteCart() {
   const quoteRequests = [...new Set(cart.map(item => item.quoteRequest))];
 
   document.querySelectorAll(".quote-request-options input").forEach(input => {
-    input.checked = quoteRequests.includes(input.value);
+    input.checked = input.checked || quoteRequests.includes(input.value);
   });
 
   handleQuoteRequestChange();
@@ -582,8 +582,6 @@ function applyRequestFromUrl() {
     });
   }
 
-  handleQuoteRequestChange();
-
   if (supportModel) {
     const matchingModel = document.querySelector(".support-analyzer-select");
 
@@ -603,6 +601,54 @@ function loadStoredSelectedQuoteRequests() {
   document.querySelectorAll(".quote-request-options input").forEach(input => {
     input.checked = input.checked || storedRequests.includes(input.value);
   });
+}
+
+function syncRequestFieldsWithoutRenderingProducts() {
+  const quoteRequests = getSelectedQuoteRequests();
+  const quoteRequestValue = document.getElementById("quoteRequestValue");
+  const otherField = document.getElementById("otherQuoteRequestField");
+
+  if (quoteRequestValue) {
+    quoteRequestValue.value = quoteRequests.join(", ");
+  }
+
+  if (otherField) {
+    const isOtherSelected = quoteRequests.includes("Other");
+    const otherInput = otherField.querySelector("input");
+
+    otherField.classList.toggle("active", isOtherSelected);
+
+    if (otherInput) {
+      otherInput.disabled = !isOtherSelected;
+
+      if (!isOtherSelected) {
+        otherInput.value = "";
+      }
+    }
+  }
+
+  renderSupportAnalyzerSection(document.querySelector(".support-analyzer-select")?.value || "");
+  saveSelectedQuoteRequests(quoteRequests);
+}
+
+function ensureSelectedProductSectionsRendered() {
+  const productList = document.getElementById("productList");
+
+  if (!productList) {
+    return;
+  }
+
+  const selectedProductRequests = getSelectedQuoteRequests()
+    .filter(quoteRequest => productOptionsByRequestType[quoteRequest]);
+  const renderedProductRequests = Array.from(productList.querySelectorAll(".product-choice-section"))
+    .map(section => section.dataset.quoteRequest);
+  const hasMissingProductSection = selectedProductRequests.some(quoteRequest =>
+    !renderedProductRequests.includes(quoteRequest)
+  );
+
+  if (hasMissingProductSection || (!selectedProductRequests.length && productList.children.length)) {
+    handleQuoteRequestChange();
+  }
 }
 
 function handleProductSelectionChange(select) {
@@ -818,8 +864,11 @@ function initializeProductControls() {
   }
 }
 
-loadStoredQuoteCart();
 loadStoredSelectedQuoteRequests();
+applyRequestFromUrl();
+loadStoredQuoteCart();
+ensureSelectedProductSectionsRendered();
+syncRequestFieldsWithoutRenderingProducts();
 applyRequestFromUrl();
 updateQuoteCartBadge();
 initializeProductControls();
