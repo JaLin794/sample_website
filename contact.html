@@ -37,7 +37,7 @@
     <p>Submit your product request, quantity, and any custom modification notes.</p>
   </div>
 
-  <form action="https://api.web3forms.com/submit" method="POST" onsubmit="return validateQuoteRequest()">
+  <form action="https://api.web3forms.com/submit" method="POST" onsubmit="return handleQuoteFormSubmit(this)">
     <input type="hidden" name="access_key" value="192f2c3d-b866-4c20-8de9-73c27afd0e7d">
     <input type="hidden" name="subject" value="VIG Industries Contact & Quote Request">
 

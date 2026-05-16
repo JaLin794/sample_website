@@ -51,6 +51,14 @@ const productLabelsByRequestType = {
   "Peripheral Purchase": "Peripheral"
 };
 
+const itemTypeLabelsByRequestType = {
+  "Service": "Service",
+  "Product Purchase": "Product",
+  "Rental": "Rental",
+  "Components Purchase": "Component",
+  "Peripheral Purchase": "Peripheral"
+};
+
 const supportAnalyzerOptions = [
   "Model 10",
   "Model 10/2",
@@ -186,6 +194,12 @@ function getStoredSelectedQuoteRequests() {
 
 function saveSelectedQuoteRequests(quoteRequests) {
   localStorage.setItem(selectedQuoteRequestsStorageKey, JSON.stringify(quoteRequests));
+}
+
+function clearStoredQuoteRequestState() {
+  localStorage.removeItem(quoteCartStorageKey);
+  localStorage.removeItem(selectedQuoteRequestsStorageKey);
+  updateQuoteCartBadge();
 }
 
 function getRenderedQuoteCart() {
@@ -505,6 +519,50 @@ function renderProductSections() {
   }).join("");
 }
 
+function restoreProductSectionsFromItems(items) {
+  if (!items.length) {
+    return;
+  }
+
+  const itemsByRequest = items.reduce((groupedItems, item) => {
+    if (!groupedItems[item.quoteRequest]) {
+      groupedItems[item.quoteRequest] = [];
+    }
+
+    groupedItems[item.quoteRequest].push(item);
+    return groupedItems;
+  }, {});
+
+  Object.keys(itemsByRequest).forEach(quoteRequest => {
+    const section = document.querySelector(
+      `.product-choice-section[data-quote-request="${quoteRequest}"]`
+    );
+
+    if (!section) {
+      return;
+    }
+
+    const itemsForRequest = itemsByRequest[quoteRequest];
+    const firstRow = section.querySelector(".product-row");
+
+    if (firstRow && itemsForRequest[0]) {
+      setProductRowValues(firstRow, itemsForRequest[0]);
+    }
+
+    itemsForRequest.slice(1).forEach(item => {
+      const addButton = section.querySelector(".add-btn");
+
+      if (!addButton) {
+        return;
+      }
+
+      addButton.insertAdjacentHTML("beforebegin", getProductRowMarkup(quoteRequest, true));
+      const rows = section.querySelectorAll(".product-row");
+      setProductRowValues(rows[rows.length - 1], item);
+    });
+  });
+}
+
 function renderSupportAnalyzerSection(selectedModel = "") {
   const supportAnalyzerList = document.getElementById("supportAnalyzerList");
 
@@ -537,6 +595,7 @@ function handleQuoteRequestChange() {
   const quoteRequestValue = document.getElementById("quoteRequestValue");
   const otherField = document.getElementById("otherQuoteRequestField");
   const selectedSupportAnalyzer = document.querySelector(".support-analyzer-select")?.value || "";
+  const currentProductItems = getRenderedQuoteCart();
 
   if (quoteRequestValue) {
     quoteRequestValue.value = quoteRequests.join(", ");
@@ -558,6 +617,7 @@ function handleQuoteRequestChange() {
   }
 
   renderProductSections();
+  restoreProductSectionsFromItems(currentProductItems);
   renderSupportAnalyzerSection(selectedSupportAnalyzer);
   if (quoteRequestOptions) {
     saveSelectedQuoteRequests(quoteRequests);
@@ -724,6 +784,151 @@ function validateQuoteRequest() {
   return false;
 }
 
+function removePreparedQuoteFields(form) {
+  form.querySelectorAll(".prepared-quote-field").forEach(field => {
+    field.remove();
+  });
+}
+
+function addPreparedQuoteField(form, name, value) {
+  const input = document.createElement("input");
+
+  input.type = "hidden";
+  input.name = name;
+  input.value = value || "";
+  input.className = "prepared-quote-field";
+  form.appendChild(input);
+}
+
+function getFormFieldValue(form, selector) {
+  return form.querySelector(selector)?.value.trim() || "";
+}
+
+function addMessageLine(lines, label, value) {
+  lines.push(`${label}: ${value || ""}`);
+}
+
+function getProductRowConfiguration(row) {
+  const optionsSection = row.querySelector(".model-options-section");
+  const select = row.querySelector(".product-select");
+
+  if (!optionsSection || !select || select.value !== "Model 10") {
+    return "";
+  }
+
+  const configurationType = optionsSection.querySelector(".model-configuration-list input[type='radio']:checked")?.value || "standard";
+  const includesTradeIn = Boolean(optionsSection.querySelector(".trade-in-option:checked"));
+  const label = configurationType === "custom" ? "Custom" : "Standard";
+
+  return includesTradeIn ? `${label} + Trade-In` : label;
+}
+
+function getProductRowOptions(row) {
+  const select = row.querySelector(".product-select");
+
+  if (!select || select.value !== "Model 10") {
+    return "";
+  }
+
+  const isCustom = row.querySelector(".model-options-section .model-configuration-list input[value='custom']:checked");
+
+  if (!isCustom) {
+    return "";
+  }
+
+  return Array.from(row.querySelectorAll(".model-options-section .model-options-list input[type='checkbox']:checked"))
+    .map(input => input.value)
+    .join(", ");
+}
+
+function prepareQuoteSubmission(form) {
+  removePreparedQuoteFields(form);
+
+  const rows = Array.from(document.querySelectorAll("#productList .product-choice-section .product-row"));
+  const messageLines = [];
+  let itemIndex = 0;
+
+  addMessageLine(messageLines, "Customer Name", getFormFieldValue(form, 'input[name="Customer Name"]'));
+  addMessageLine(messageLines, "Company", getFormFieldValue(form, 'input[name="Company"]'));
+  addMessageLine(messageLines, "Address", getFormFieldValue(form, 'input[name="Shipping Address"]'));
+  addMessageLine(messageLines, "Email", getFormFieldValue(form, 'input[name="Email"]'));
+  addMessageLine(messageLines, "Phone", getFormFieldValue(form, 'input[name="Phone"]'));
+  addMessageLine(messageLines, "Request", getFormFieldValue(form, 'input[name="Request"]'));
+
+  const otherRequest = getFormFieldValue(form, 'input[name="Other Request"]:not(:disabled)');
+  const supportAnalyzer = getFormFieldValue(form, 'select[name="Technical Support Analyzer Model"]');
+
+  if (otherRequest) {
+    addMessageLine(messageLines, "Other Request", otherRequest);
+  }
+
+  if (supportAnalyzer) {
+    addMessageLine(messageLines, "Technical Support Analyzer Model", supportAnalyzer);
+  }
+
+  addMessageLine(messageLines, "Comments", getFormFieldValue(form, 'textarea[name="Comments"]'));
+
+  rows.forEach(row => {
+    const section = row.closest(".product-choice-section");
+    const quoteRequest = section ? section.dataset.quoteRequest : "";
+    const select = row.querySelector(".product-select");
+    const amountInput = row.querySelector('input[type="number"]');
+
+    if (!select || !select.value) {
+      return;
+    }
+
+    itemIndex += 1;
+    messageLines.push("");
+    addMessageLine(messageLines, `Item ${itemIndex} Type`, itemTypeLabelsByRequestType[quoteRequest] || quoteRequest);
+    addMessageLine(messageLines, `Item ${itemIndex} Name`, select.value);
+    addMessageLine(messageLines, `Item ${itemIndex} Configuration`, getProductRowConfiguration(row));
+    addMessageLine(messageLines, `Item ${itemIndex} Qty`, amountInput && amountInput.value ? amountInput.value : "1");
+    addMessageLine(messageLines, `Item ${itemIndex} Options`, getProductRowOptions(row));
+  });
+
+  if (itemIndex) {
+    messageLines.push("");
+    addMessageLine(messageLines, "Item Count", String(itemIndex));
+  }
+
+  addPreparedQuoteField(form, "message", messageLines.join("\n"));
+
+  form.querySelectorAll("input[name], select[name], textarea[name]").forEach(field => {
+    const isSystemField = ["access_key", "subject"].includes(field.name);
+    const isPreparedField = field.classList.contains("prepared-quote-field");
+
+    if (!isSystemField && !isPreparedField) {
+      field.disabled = true;
+    }
+  });
+}
+
+function resetQuoteRequestForm(form) {
+  if (!form) {
+    return;
+  }
+
+  form.reset();
+  productRowId = 0;
+  hasLoadedStoredQuoteCart = true;
+  renderProductSections();
+  renderSupportAnalyzerSection();
+  syncRequestFieldsWithoutRenderingProducts();
+  updateQuoteCartBadge();
+}
+
+function handleQuoteFormSubmit(form) {
+  if (!validateQuoteRequest()) {
+    return false;
+  }
+
+  prepareQuoteSubmission(form);
+  sessionStorage.setItem("vigQuoteSubmitted", "true");
+  clearStoredQuoteRequestState();
+  return true;
+}
+
 function addProduct(quoteRequest) {
   const section = document.querySelector(
     `.product-choice-section[data-quote-request="${quoteRequest}"]`
@@ -872,6 +1077,16 @@ syncRequestFieldsWithoutRenderingProducts();
 applyRequestFromUrl();
 updateQuoteCartBadge();
 initializeProductControls();
+
+window.addEventListener("pageshow", () => {
+  if (sessionStorage.getItem("vigQuoteSubmitted") !== "true") {
+    return;
+  }
+
+  sessionStorage.removeItem("vigQuoteSubmitted");
+  clearStoredQuoteRequestState();
+  resetQuoteRequestForm(document.querySelector("#contact form"));
+});
 
 const productList = document.getElementById("productList");
 const productOptionsPanel = document.querySelector(".product-options-panel");
