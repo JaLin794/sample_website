@@ -808,6 +808,15 @@ function addMessageLine(lines, label, value) {
   lines.push(`${label}: ${value || ""}`);
 }
 
+function getRequestDateValue() {
+  const requestDate = new Date();
+  const year = requestDate.getFullYear();
+  const month = String(requestDate.getMonth() + 1).padStart(2, "0");
+  const day = String(requestDate.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 function getProductRowConfiguration(row) {
   const optionsSection = row.querySelector(".model-options-section");
   const select = row.querySelector(".product-select");
@@ -848,6 +857,7 @@ function prepareQuoteSubmission(form) {
   const messageLines = [];
   let itemIndex = 0;
 
+  addMessageLine(messageLines, "Request Date", getRequestDateValue());
   addMessageLine(messageLines, "Customer Name", getFormFieldValue(form, 'input[name="Customer Name"]'));
   addMessageLine(messageLines, "Company", getFormFieldValue(form, 'input[name="Company"]'));
   addMessageLine(messageLines, "Address", getFormFieldValue(form, 'input[name="Shipping Address"]'));
